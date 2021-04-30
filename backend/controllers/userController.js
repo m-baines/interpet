@@ -1,8 +1,7 @@
 const User = require('../models/user')
 const Pet = require('../models/pet')
-const { body, validator } = require("express-validator")
-const { validationResult } = require("express-validator")
-const { getUserId } = require('../utilities/functions')
+const { body, validator, sanitizeBody, validationResult } = require("express-validator")
+const { getUserId } = require('../utilities/utilities')
 
 
 const bcrypt = require('bcrypt')
@@ -66,8 +65,6 @@ exports.login_user_post = [
 
     // Validate fields.
     body("username", "username must not be empty.").isLength({ min: 1 }).trim(),
-  
-    body("email").isEmail(),
   
     // password must be at least 8 chars long
     body("password").isLength({ min: 8 }).withMessage("Password must be at least 8 chars long"),
@@ -153,7 +150,9 @@ exports.get_user_pets = (req,res) => {
             res.json(pets)
         })
     }
+    else {
 
-    res.json("user doesn't exist")
+
+    res.json("user doesn't exist") }
 }
 
