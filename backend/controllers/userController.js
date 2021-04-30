@@ -1,6 +1,8 @@
 const User = require('../models/user')
+const Pet = require('../models/pet')
 const { body, validator } = require("express-validator")
-const { validationResult} = require("express-validator")
+const { validationResult } = require("express-validator")
+const { getUserId } = require('../utilities/functions')
 
 
 const bcrypt = require('bcrypt')
@@ -99,4 +101,59 @@ exports.login_user_post = [
     }
 ]
 
+//  Create Pet POST
+
+exports.create_pet_post = [
+
+    // Validate fields.
+    body("name", "name must not be empty.").isLength({ min: 1 }).trim(),
+
+    //Sanitize fields.
+    sanitizeBody("username").escape(),
+  
+    (req, res) => {
+      //Extract validation errors from request
+      const errors = validationResult(req);
+  
+      if (!errors.isEmpty()) {
+        res.send("data failed validation");
+      }
+
+      const userId = getUserId(req)
+
+      let newPet = {
+        name: req.body.name,
+        timeCreated: Date.now(),
+        energy: 50,
+        happiness: 50,
+        cleanliness: true,
+        sickness: false,
+        userId
+
+      }
+
+      let pet = new Pet(newPet)
+
+      pet.save((err, results) => {
+        if (err) res.json("error")
+        res.json("new pet created" + results)
+
+      })
+
+      
+    }
+]
+
+exports.get_user_pets = (req,res) => {
+    const userId = getUserId(req)
+
+    if (userId) {
+        Pet.find({userId}, (err, pets) => {
+            if (err) res.json("user is childless")
+            res.json(pets)
+        })
+    }
+
+    res.json("user doesn't exist")
+}
 

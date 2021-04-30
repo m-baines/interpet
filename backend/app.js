@@ -3,8 +3,10 @@ require('dotenv').config()
 const express = require('express')
 const bodyParser = require('body-parser')
 const mongoSanitize = require('express-mongo-sanitize')
+const cors = require('cors') //
 
 const app = express()
+app.use(cors()); // 
 
 // IMPORT ROUTES
 const api = require('./api.js')
