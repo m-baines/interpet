@@ -37,3 +37,38 @@ exports.pet_pet = (req, res) => {
         }
     )
 }
+
+exports.pet_clean = (req, res) => {
+    Pet.findOneAndUpdate(
+        { _id: req.params.id, cleanliness: false },
+        { "cleanliness" : true },
+        {new: true},
+        (err, result) => {
+            if (err) {
+                res.send(err)
+            } else if (result) {
+                res.json("Your pet has been cleaned. " + result)
+            } else {
+                res.json("Your pet is already clean.")
+            }
+        }
+    )
+}
+
+exports.pet_heal = (req, res) => {
+    Pet.findOneAndUpdate(
+        { _id: req.params.id, sickness: true },
+        { "sickness" : false },
+        {new: true},
+        (err, result) => {
+            if (err) {
+                res.send(err)
+            } else if (result) {
+                res.json("Your pet has been healed. " + result)
+            } else {
+                res.json("Your pet is already healthy.")
+            }
+        }
+    )
+}
+
