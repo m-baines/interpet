@@ -26,13 +26,13 @@ exports.signup_user_post = [
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      res.send(errors); //"data failed validation"
+      res.status(500).send(errors); //"data failed validation"
     } else {
 
       User.find({username: req.body.username}).exec((err, found) => {
         if (err) {return next (err)}
         if (found.length !== 0) {
-          res.send("This username already exists.")
+          res.status(409).send("This username already exists.")
         }
         else {
           bcrypt.hash(req.body.password, 10 , (err, hashedPassword) => {
@@ -51,7 +51,10 @@ exports.signup_user_post = [
               
               const accessToken = jwt.sign({ id: data._id }, process.env.JWT_SECRET)
               
-              res.json('User created. ' + accessToken)
+              res.status(200).json({
+                message: 'Congratulations, you created an account!',
+                token: 'Bearer ' + accessToken
+              })
             })
           })
         }
@@ -79,24 +82,29 @@ exports.login_user_post = [
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      res.send(errors); //"data failed validation"
+      res.status(500).send(errors); //"data failed validation"
     } else {
 
       User.findOne({username: req.body.username}, (err, user) => {
         if (err) return next (err)
         if (!user) {
-          res.json("Incorrect username.")
+          res.status(400).json("Incorrect username.")
         } else {
           bcrypt.compare(req.body.password, user.password, (err, authenticated) => {
             if (err) {
-              res.json(err)
+              res.status(500).json(err)
             }
             if (authenticated) {
               const accessToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
-              res.json( {token: 'Bearer ' + accessToken, success: true })
+              res.status(200).json({
+                success: true,
+                token: 'Bearer ' + accessToken
+              })
             } else {
-              // res is OutgoingMessage object that server response http request
-              return res.json({success: false, message: 'passwords do not match'})
+              return res.status(403).json({
+                success: false,
+                message: 'Passwords do not match.'
+              })
             }
           })
         }
@@ -120,7 +128,7 @@ exports.create_pet_post = [
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      res.send(errors); //"data failed validation"
+      res.status(500).send(errors); //"data failed validation"
     } else {
       const userId = getUserId(req)
 
@@ -139,28 +147,31 @@ exports.create_pet_post = [
 
       let pet = new Pet(newPet)
 
-      pet.save((err, results) => {
-        if (err) res.json(err)
-        res.json("New pet created. " + results)
+      pet.save((err, result) => {
+        if (err) res.status(500).json(err)
+        res.status(201).json({
+          message: "New pet created.",
+          result
+        })
       })
     }
   }
 ]
 
-exports.get_user_pets = (req,res) => {
+exports.get_user_pets = (req, res) => {
   const userId = getUserId(req)
 
   if (userId) {
     Pet.find({userId}, (err, pets) => {
       if (err) {
-        res.json(err)
+        res.status(500).json(err)
       } else if (JSON.stringify(pets)=="[]") {
-        res.json("User has no pets.")
+        res.status(204).json("User has no pets.")
       } else {
-        res.json(pets + " found.")
+        res.status(200).json(pets)
       }
     })
   } else {
-    res.json("User doesn't exist.") }
+    res.status(400).json("User doesn't exist.") }
 }
 
