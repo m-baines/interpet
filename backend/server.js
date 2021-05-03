@@ -21,7 +21,7 @@ require('./models/user')
 
 const app = require('./app')
 
-const server = app.listen(3000, () => {
+const server = app.listen(8000, () => {
   console.log(`Express running on PORT ${server.address().port}`)
 })
 
