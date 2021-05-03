@@ -72,3 +72,17 @@ exports.pet_heal = (req, res) => {
     )
 }
 
+exports.pet_release = (req, res) => {
+    Pet.findByIdAndDelete(req.params.id,
+        (err, result) => {
+            if (err) {
+                res.send(err)
+            } else if (result) {
+                res.json(result["name"] + " has been released into the wild...")
+            } else {
+                res.json("No pet to release.")
+            }
+        }
+    )
+}
+

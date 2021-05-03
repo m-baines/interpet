@@ -15,4 +15,7 @@ router.put('/clean/:id', actionsController.pet_clean);
 // actions HEAL PET
 router.put('/heal/:id', actionsController.pet_heal);
 
+// actions RELEASE PET
+router.delete('/release/:id', actionsController.pet_release);
+
 module.exports = router

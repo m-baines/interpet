@@ -121,10 +121,12 @@ exports.create_pet_post = [
       let newPet = {
         name: req.body.name,
         timeCreated: Date.now(),
+        timeOfDeath: null,
         energy: 50,
         happiness: 50,
         cleanliness: true,
         sickness: false,
+        dead: false,
         userId
 
       }
