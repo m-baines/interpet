@@ -8,8 +8,8 @@ const PetSchema = new Schema(
         timeOfDeath: {type: Date},
         energy: {type: Number, required: true, max: 100},
         happiness: {type: Number, required: true, max: 100},
-        cleanliness: {type: Boolean, required: true},
-        sickness: {type: Boolean, required: true},
+        cleanliness: {type: Boolean, required: true}, //change to "clean"?
+        sickness: {type: Boolean, required: true}, // change to "sick"?
         dead: {type: Boolean, required: true},
         userId: {type:Schema.Types.ObjectId, ref: "User", required: true}
     }

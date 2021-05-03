@@ -10,53 +10,54 @@ const jwt = require("jsonwebtoken");
 // Sign up POST
 exports.signup_user_post = [
 
-    // Validate fields.
-    body("username", "username must not be empty.").isLength({ min: 1 }).trim(),
-  
-    body("email").isEmail(),
-  
-    // password must be at least 8 chars long
-    body("password").isLength({ min: 8 }).withMessage("Password must be at least 8 chars long"),
-  
-    //Sanitize fields.
-    sanitizeBody("username").escape(),
-  
-    (req, res) => {
-      //Extract validation errors from request
-      const errors = validationResult(req);
-  
-      if (!errors.isEmpty()) {
-        res.send("data failed validation");
+  // Validate fields.
+  body("username", "Username must not be empty.").isLength({ min: 1 }).trim(),
+
+  body("email").isEmail(),
+
+  // password must be at least 8 chars long
+  body("password").isLength({ min: 8 }).withMessage("Password must be at least 8 characters long."),
+
+  //Sanitize fields.
+  sanitizeBody("username").escape(),
+
+  (req, res) => {
+    //Extract validation errors from request
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      res.send(errors); //"data failed validation"
+    }
+
+    User.find({username: req.body.username}).exec((err, found) => {
+      if (err) {return next (err)}
+      if (found.length !== 0) {
+        res.send("This username already exists.")
       }
-
-      User.find({username: req.body.username}).exec((err, found) => {
-          if (err) {return next (err)}
-          if (found.length !== 0) {
-              res.send("username already exists")
+      else {
+        bcrypt.hash(req.body.password, 10 , (err, hashedPassword) => {
+          if (err) return err
+          
+          userDetails = {
+            username: req.body.username,
+            password: hashedPassword,
+            email: req.body.email,
           }
-          else {
-            bcrypt.hash(req.body.password, 10 , (err, hashedPassword) => {
-              if (err) return err
-              
-              userDetails = {
-                username: req.body.username,
-                password: hashedPassword,
-                email: req.body.email,
-              }
 
-              let user = new User(userDetails)
+          let user = new User(userDetails)
 
-              user.save((err, data) => {
-                if (err) return next (err)
-                
-                const accessToken = jwt.sign({ id: data._id }, process.env.JWT_SECRET)
-                
-                res.json('user created  ' + accessToken)
-              })
-              })
-         }
-      })
-}];
+          user.save((err, data) => {
+            if (err) return next (err)
+            
+            const accessToken = jwt.sign({ id: data._id }, process.env.JWT_SECRET)
+            
+            res.json('User created. ' + accessToken)
+          })
+        })
+      }
+    })
+  }
+];
 
 
 // Login POST
@@ -64,10 +65,10 @@ exports.signup_user_post = [
 exports.login_user_post = [
 
     // Validate fields.
-    body("username", "username must not be empty.").isLength({ min: 1 }).trim(),
+    body("username", "Username must not be empty.").isLength({ min: 1 }).trim(),
   
     // password must be at least 8 chars long
-    body("password").isLength({ min: 8 }).withMessage("Password must be at least 8 chars long"),
+    body("password").isLength({ min: 8 }).withMessage("Password must be at least 8 characters long."),
   
     //Sanitize fields.
     sanitizeBody("username").escape(),
@@ -77,20 +78,20 @@ exports.login_user_post = [
       const errors = validationResult(req);
   
       if (!errors.isEmpty()) {
-        res.send("data failed validation");
+        res.send(errors); //"data failed validation"
       }
 
-      User.findOne({username: req.body.username}, (err, user ) => {
+      User.findOne({username: req.body.username}, (err, user) => {
         if (err) return next (err)
-        if (!user) res.json("Incorrect username")
+        if (!user) res.json("Incorrect username.")
 
         else {
           bcrypt.compare(req.body.password, user.password, (err, authenticated) => {
-            if (err) res.json('Incorrect Password')
+            if (err) res.json('Incorrect password.')
   
             const accessToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
   
-            res.json( {token: 'Bearer  ' + accessToken, success: true })
+            res.json( {token: 'Bearer ' + accessToken, success: true })
           })
 
         }
@@ -103,17 +104,17 @@ exports.login_user_post = [
 exports.create_pet_post = [
 
     // Validate fields.
-    body("name", "name must not be empty.").isLength({ min: 1 }).trim(),
+    body("name", "Name must not be empty.").isLength({ min: 1 }).trim(),
 
     //Sanitize fields.
-    sanitizeBody("username").escape(),
+    sanitizeBody("name").escape(),
   
     (req, res) => {
       //Extract validation errors from request
       const errors = validationResult(req);
   
       if (!errors.isEmpty()) {
-        res.send("data failed validation");
+        res.send(errors); //"data failed validation"
       }
 
       const userId = getUserId(req)
@@ -134,12 +135,10 @@ exports.create_pet_post = [
       let pet = new Pet(newPet)
 
       pet.save((err, results) => {
-        if (err) res.json("error")
-        res.json("new pet created" + results)
+        if (err) res.json(err)
+        res.json("New pet created. " + results)
 
       })
-
-      
     }
 ]
 
@@ -147,14 +146,11 @@ exports.get_user_pets = (req,res) => {
     const userId = getUserId(req)
 
     if (userId) {
-        Pet.find({userId}, (err, pets) => {
-            if (err) res.json("user is childless")
-            res.json(pets)
-        })
-    }
-    else {
-
-
-    res.json("user doesn't exist") }
+      Pet.find({userId}, (err, pets) => {
+          if (err) res.json("User has no pets.")
+          res.json(pets)
+      })
+    } else {
+      res.json("User doesn't exist.") }
 }
 

@@ -15,5 +15,4 @@ router.post('/createpet', userController.create_pet_post);
 // user GET PETS
 router.get('/pets', userController.get_user_pets);
 
-
 module.exports = router
