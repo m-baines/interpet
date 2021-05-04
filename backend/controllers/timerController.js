@@ -11,18 +11,22 @@ exports.happinessAndEnergy = async () => {
   const allPets = await getAllPets()
 
   // Shows the status of the pets for testing
-    // console.log(allPets)
+    console.log(allPets)
 
 
   allPets.map((pet) => {
+
+    // Energy drain increment
+    pet.energy -= 1
+
     // Energy checks
     if (pet.energy >= 75 ) {
         pet.happiness += 2 
     } else if (pet.energy >= 50) {
         pet.happiness += 1
     } else if (pet.energy >= 0 && pet.energy <= 25) {
-        pet.happiness -=1
-    } else if (pet.energy == 0) {
+        pet.happiness -= 1
+    } else if (pet.energy <= 0) {
         pet.happiness -= 3
     }
     // Dirty check
@@ -33,8 +37,16 @@ exports.happinessAndEnergy = async () => {
     if (pet.sick.status) {
         pet.happiness -= 3
     }
+    // Energy min
+    if (pet.energy <= 0) {
+        pet.energy = 0
+    }
+    // Happiness min
+    if (pet.happiness <= 0) {
+        pet.happiness = 0
+    }
 
-    Pet.findByIdAndUpdate(pet._id, {"happiness": pet.happiness, $inc: { "energy": -1 } }, {new: true}, (err, result) => {
+    Pet.findByIdAndUpdate(pet._id, {"happiness": pet.happiness, "energy": pet.energy }, {new: true}, (err, result) => {
         if (err) {console.log(err)}
     })
   })
@@ -65,18 +77,16 @@ exports.sick = async () => {
     const allPets = await getAllPets()
     
     allPets.map((pet) => {
-        if ( pet.sick.status == false && (Date.now() - pet.dirty.time) >= (0.5*60*1000) ) {
+        if ( pet.sick.status == false && ((Date.now() - pet.dirty.time) >= (0.5*60*1000) || pet.energy <= 0)) {
             pet.sick.status = true
             pet.sick.time = Date.now()
         }
-
+        
         Pet.findByIdAndUpdate(pet._id, {"sick.status": pet.sick.status, "sick.time": pet.sick.time}, {new: true}, (err, result) => {
             if (err) {console.log(err)}
         })
     })
 }
-
-
 
 // Dead Timer
 exports.dead = async () => {
