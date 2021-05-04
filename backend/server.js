@@ -1,4 +1,6 @@
 const mongoose = require('mongoose')
+const timerController = require('./controllers/timerController')
+
 
 require('dotenv').config({ path: '.env' })
 
@@ -23,6 +25,8 @@ const app = require('./app')
 
 const server = app.listen(8000, () => {
   console.log(`Express running on PORT ${server.address().port}`)
+  // timerController.getAllPets()
+
 })
 
 module.exports=app

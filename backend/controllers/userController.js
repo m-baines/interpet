@@ -135,14 +135,12 @@ exports.create_pet_post = [
       let newPet = {
         name: req.body.name,
         timeCreated: Date.now(),
-        timeOfDeath: null,
         energy: 50,
         happiness: 50,
-        cleanliness: true,
-        sickness: false,
-        dead: false,
+        dirty: {status: false},
+        sick: {status: false},
+        dead: {status: false},
         userId
-
       }
 
       let pet = new Pet(newPet)

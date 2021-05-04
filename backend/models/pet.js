@@ -5,12 +5,17 @@ const PetSchema = new Schema(
     {
         name: {type: String, required: true, max: 100},
         timeCreated: {type: Date, required: true},
-        timeOfDeath: {type: Date},
         energy: {type: Number, required: true, max: 100},
         happiness: {type: Number, required: true, max: 100},
-        cleanliness: {type: Boolean, required: true}, //change to "clean"?
-        sickness: {type: Boolean, required: true}, // change to "sick"?
-        dead: {type: Boolean, required: true},
+        dirty: { status: { type: Boolean, required: true},
+                 time: { type: Date }
+        },
+        sick: { status: { type: Boolean, required: true },
+                time: { type:Date }
+        },
+        dead: { status: { type: Boolean, required: true },
+                time: { type:Date }
+        },
         userId: {type:Schema.Types.ObjectId, ref: "User", required: true}
     }
 )

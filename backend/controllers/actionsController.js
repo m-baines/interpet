@@ -44,7 +44,7 @@ exports.pet_pet = (req, res) => {
     )
 }
 
-// Clean pet
+// Pet clean
 
 exports.pet_clean = (req, res) => {
     Pet.findOneAndUpdate(
@@ -66,7 +66,7 @@ exports.pet_clean = (req, res) => {
     ) 
 }
 
-// Heal pet
+// Pet heal
 
 exports.pet_heal = (req, res) => {
     Pet.findOneAndUpdate(
@@ -88,7 +88,7 @@ exports.pet_heal = (req, res) => {
     )
 }
 
-// Release pet
+// Pet release
 
 exports.pet_release = (req, res) => {
     Pet.findByIdAndDelete(req.params.id,
