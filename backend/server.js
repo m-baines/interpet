@@ -25,7 +25,8 @@ const app = require('./app')
 
 const server = app.listen(8000, () => {
   console.log(`Express running on PORT ${server.address().port}`)
-  // timerController.getAllPets()
+  setInterval(() => timerController.happiness(), 5000)
+  setInterval(() => timerController.poo(), 15000)
 
 })
 

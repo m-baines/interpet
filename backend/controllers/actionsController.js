@@ -96,7 +96,7 @@ exports.pet_release = (req, res) => {
             if (err) {
                 res.status(500).send(err)
             } else if (result) {
-                res.status(204).json(result["name"] + " has been released into the wild...")
+                res.status(200).json(result["name"] + " has been released into the wild...")
             } else {
                 res.status(403).json("No pet to release.")
             }
