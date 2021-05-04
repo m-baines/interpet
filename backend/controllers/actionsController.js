@@ -48,8 +48,8 @@ exports.pet_pet = (req, res) => {
 
 exports.pet_clean = (req, res) => {
     Pet.findOneAndUpdate(
-        { _id: req.params.id, cleanliness: false },
-        { "cleanliness" : true, $inc: {"happiness" : 2} },
+        { _id: req.params.id, "dirty.status": true },
+        { "dirty.status": false, "dirty.time": null, $inc: {"happiness" : 2} },
         {new: true},
         (err, result) => {
             if (err) {
@@ -70,8 +70,8 @@ exports.pet_clean = (req, res) => {
 
 exports.pet_heal = (req, res) => {
     Pet.findOneAndUpdate(
-        { _id: req.params.id, sickness: true },
-        { "sickness" : false, $inc: {"happiness": 3} },
+        { _id: req.params.id, "sick.status": true },
+        { "sick.status": false, "sick.time": null, $inc: {"happiness": 3} },
         {new: true},
         (err, result) => {
             if (err) {
