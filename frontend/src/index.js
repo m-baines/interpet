@@ -3,10 +3,27 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {createStore, combineReducers, applyMiddleware } from 'redux'
+import { Provider } from 'react-redux'
+import loginReducer from './reducers/loginReducer'
+import petReducer from './reducers/petReducer'
+import { composeWithDevTools } from 'redux-devtools-extension'
+
+const reducer = combineReducers({
+  user: loginReducer,
+  pet: petReducer
+
+})
+
+const store = createStore(reducer,
+composeWithDevTools())
+
 
 ReactDOM.render(
   <React.StrictMode>
+    <Provider store={store}>
     <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -11,7 +11,7 @@ exports.happinessAndEnergy = async () => {
   const allPets = await getAllPets()
 
   // Shows the status of the pets for testing
-    console.log(allPets)
+    // console.log(allPets)
 
 
   allPets.map((pet) => {
@@ -77,7 +77,7 @@ exports.sick = async () => {
     const allPets = await getAllPets()
     
     allPets.map((pet) => {
-        if ( pet.sick.status == false && ((Date.now() - pet.dirty.time) >= (0.5*60*1000) || pet.energy <= 0)) {
+        if ( pet.sick.status == false && ((Date.now() - pet.dirty.time) >= (5*60*1000) || pet.energy <= 0)) {
             pet.sick.status = true
             pet.sick.time = Date.now()
         }
@@ -93,7 +93,7 @@ exports.dead = async () => {
     const allPets = await getAllPets()
     
     allPets.map((pet) => {
-        if ( pet.dead.status == false && (Date.now() - pet.sick.time) >= (0.5*60*1000) ) {
+        if ( pet.dead.status == false && (Date.now() - pet.sick.time) >= (5*60*1000) ) {
             pet.dead.status = true
             pet.dead.time = Date.now()
         }

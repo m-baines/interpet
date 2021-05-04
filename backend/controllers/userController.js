@@ -173,3 +173,15 @@ exports.get_user_pets = (req, res) => {
     res.status(400).json("User doesn't exist.") }
 }
 
+exports.get_specific_pet = (req,res) => {
+  Pet.findById(req.params.id, (err, pet) => {
+    if (err) {
+      res.status(500).json(err)
+    } else if (JSON.stringify(pet)=="[]") {
+      res.status(204).json("User has no pets.")
+    } else {
+      res.status(200).json(pet)
+    }
+
+  })
+}

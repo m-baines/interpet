@@ -15,4 +15,7 @@ router.post('/createpet', userController.create_pet_post);
 // user GET PETS
 router.get('/pets', userController.get_user_pets);
 
+// user GET specific PET
+router.get('/pets/:id', userController.get_specific_pet);
+
 module.exports = router
