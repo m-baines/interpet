@@ -6,12 +6,13 @@ const getAllPets = async (req, res) => {
 }
 
 
-// Happiness Timer
-exports.happiness = async () => {
+// Happiness and Energy Timer
+exports.happinessAndEnergy = async () => {
   const allPets = await getAllPets()
 
   // Shows the status of the pets for testing
-  console.log(allPets)
+    // console.log(allPets)
+
 
   allPets.map((pet) => {
     // Energy checks
@@ -33,9 +34,8 @@ exports.happiness = async () => {
         pet.happiness -= 3
     }
 
-    Pet.findByIdAndUpdate(pet._id, {"happiness": pet.happiness}, {new: true}, (err, result) => {
+    Pet.findByIdAndUpdate(pet._id, {"happiness": pet.happiness, $inc: { "energy": -1 } }, {new: true}, (err, result) => {
         if (err) {console.log(err)}
-
     })
   })
 }
