@@ -51,23 +51,24 @@ const SignupForm = () => {
         <div >
           <h2> Register </h2>
         </div>
-        <div > 
+        <div className="formcontainer" > 
 
           <form onSubmit={signupHandler}>
 
             <div class="input">
-              <input className='' type="text" name="username" value={username} onChange={(e) => {setUsername(e.target.value)}} placeholder="Username..."/>
+              <input className='text-input' type="text" name="username" value={username} onChange={(e) => {setUsername(e.target.value)}} placeholder="Username..."/>
             </div>
             
             <div class="input">
-              <input className='' type="text" name="email"  value={email} onChange={(e) => {setEmail(e.target.value)}} placeholder="Email..."/>
+              <input className='text-input' type="text" name="email"  value={email} onChange={(e) => {setEmail(e.target.value)}} placeholder="Email..."/>
             </div>
 
             <div class="input">
-              <input className='' type="text" name="password"  value={password} onChange={(e) => {setPassword(e.target.value)}} placeholder="Password..."/>
+              <input className='text-input' type="text" name="password"  value={password} onChange={(e) => {setPassword(e.target.value)}} placeholder="Password..."/>
             </div>
-              
-            <button className=''type="submit"> Sign Up </button>
+            <div class="input"> 
+            <button className=' btn btn-block text-input'type="submit"> Sign Up </button>
+            </div> 
           </form>
         </div>
     </div>

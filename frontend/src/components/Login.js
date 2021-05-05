@@ -49,21 +49,22 @@ const LoginForm = () => {
           <div class="">
             
           </div>
-          <div className=""> 
+          <div  className="formcontainer"> 
   
             <form onSubmit={loginHandler}>
   
               <div class="input ">
-                <input className="" type="text" name="username" value={username} onChange={(e) => {setUsername(e.target.value)}} placeholder="Username..." />
+                <input className='text-input' type="text" name="username" value={username} onChange={(e) => {setUsername(e.target.value)}} placeholder="Username..." />
               </div>
   
               <div class="input">
-                <input className="" type="text" name="password"  value={password} onChange={(e) => {setPassword(e.target.value)}} placeholder="Password..."/>
+                <input className='text-input' type="text" name="password"  value={password} onChange={(e) => {setPassword(e.target.value)}} placeholder="Password..."/>
               </div>
   
               
-                
-              <button className="btn btn-block" type="submit"> Login </button>
+              <div class="input">
+              <button className="btn btn-block text-input" type="submit"> Login </button>
+              </div>
             </form>
           </div>
 

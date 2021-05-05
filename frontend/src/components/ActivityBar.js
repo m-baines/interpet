@@ -4,7 +4,7 @@ import {useSelector} from 'react-redux'
 
 
 
-const Main = () => {
+const ActivityBar = () => {
 
     let activePet = useSelector(state=> state.pet)
 
@@ -14,22 +14,23 @@ const actionHandler = async (e) =>
       //const response = await actionService.feedPet(activePet.id)
       switch (e.target.name) {
         case 'feed':
-            let feed = await actionService.feedPet(activePet.id)
+            let feed = await actionService.feedPet(activePet.result._id)
+            console.log(activePet.result._id)
             console.log(feed)
             break;
 
         case 'pet':
-            let pet = await actionService.petPet(activePet.id)
+            let pet = await actionService.petPet(activePet.result.id)
             console.log(pet)
             break;
 
         case 'clean':
-            let clean = await actionService.cleanPet(activePet.id)
+            let clean = await actionService.cleanPet(activePet.result.id)
             console.log(clean)
             break;
                     
         case 'heal':
-            let heal = await actionService.healPet(activePet.id)
+            let heal = await actionService.healPet(activePet.result.id)
             console.log(heal)
             break;
             
@@ -39,7 +40,7 @@ const actionHandler = async (e) =>
   }
 
     return (
-        <div>
+        <div className="activitycontainer">
 
 
             <button name='feed' onClick={actionHandler}> Feed</button> 
@@ -51,4 +52,4 @@ const actionHandler = async (e) =>
     )
 }
 
-export default Main 
+export default ActivityBar

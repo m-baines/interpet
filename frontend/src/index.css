@@ -11,3 +11,83 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.logo > img {
+  width: 20%
+}
+
+.Headerwrapper {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.headerlinks {
+  display: flex;
+  justify-content: center;
+ 
+  font-size: 1.5rem;
+  font-family: monospace;
+}
+
+.headerlinks > a {
+  margin-left: 2rem;
+  margin-top: 2rem;
+  text-decoration: none;
+}
+
+.activitycontainer {
+  display: flex;
+  justify-content: center;
+  justify-content: space-around;
+  margin: 0 20rem;
+}
+
+
+.input {
+  margin: 0 10rem;
+
+}
+.text-input,
+.text-input:focus,
+.text-input:active {
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+  border-color: orange;
+  display: block;
+  width: 98%;
+  padding: 16px;
+  font-size: 16px;
+  border-radius: 2px;
+  outline: none;
+  margin-bottom: 1rem;
+}
+
+.formcontainer {
+  margin: 0 10re;
+}
+
+.btn {
+  display: inline-block;
+  background: orange;
+  color: #fff;
+  border: none;
+ 
+  
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 15px;
+  font-family: inherit;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
