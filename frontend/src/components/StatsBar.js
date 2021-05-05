@@ -48,13 +48,19 @@ const StatsBar = () => {
     return (
 
 
-        <div>
-            {stats !== null? <div>
-            <li> Energy: {stats.energy} </li>
-            <li> Happiness: {stats.happiness} </li>
-            <li> Dirty: {stats.dirty.status ? <p> yes </p> : <p> no </p>} </li>
-            <li> Sick: {stats.sick.status ? <p> yes </p> : <p> no </p>} </li>
-            <li> Age: {mins} mins {secs} secs </li> 
+        <div className="statscontainer">
+            {stats !== null? 
+            <div className="innerstatscontainer">
+              <div className="statsheader">
+                <h3> Stats </h3> 
+              </div>
+              <div className="statsbar"> 
+              <li> Energy: {stats.energy} </li>
+              <li> Happiness: {stats.happiness} </li>
+              <li> Dirty: {stats.dirty.status ?  'yes'  :  'no'} </li>
+              <li> Sick: {stats.sick.status ? 'yes'  :  'no'} </li>
+              <li> Age: {mins} mins {secs} secs </li> 
+              </div>
             </div> :
             null }
         </div>

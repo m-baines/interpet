@@ -30,15 +30,31 @@ const Header = () => {
         </header>
         
         {user=== null?
+        <div>
           <div className="headerlinks">
             <Link to="/register"> Register </Link>
             <Link to="/login"> Login </Link>
-          </div> :
+          </div> 
+          <div className="mobileheaderlinks">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+          </div>
+        </div> :
+
+        <div>
 
           <div className="headerlinks">
             <Link to='/viewPets'> View All Pets </Link>  
             <Link to='/createPet'> Create Pet </Link>
-            Hi, {user.username} <button onClick={logoutHandler}> Logout </button> </div>
+            <span className="logout"> Hi, {user.username} <button onClick={logoutHandler}> Logout </button> </span>
+          </div>
+          <div className="mobileheaderlinks">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+          </div>
+        </div>
         }
       </div> 
     )

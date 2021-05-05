@@ -53,7 +53,7 @@ const SignupForm = () => {
   return (
       <div >
         <div >
-          <h2> Register </h2>
+          <h1> Register </h1>
         </div>
         <div className="formcontainer" > 
 

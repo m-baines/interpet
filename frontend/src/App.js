@@ -35,7 +35,7 @@ function App() {
       
           userService.setToken(token[1])
     }
-  }) 
+  }, []) 
 
   useEffect(() => {
     const loggedUser = window.localStorage.getItem('loggedUser')
@@ -57,7 +57,7 @@ function App() {
     <Router>
       <div className="flex flex-col h-screen">
        <Header /> 
-        <div className="container mx-auto mb-auto px-8">
+        <div className="bodywrapper">
           <Switch>
 
             <Route exact path="/">

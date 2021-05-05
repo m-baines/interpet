@@ -7,39 +7,49 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1 {
+  text-align:center;
+  color: orange;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
 .logo > img {
-  width: 20%
+  width: 250px;
 }
 
 .Headerwrapper {
   display: grid;
   grid-template-columns: 2fr 1fr;
+  margin: 2rem;
 }
 
 .headerlinks {
   display: flex;
   justify-content: center;
  
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-family: monospace;
 }
 
-.headerlinks > a {
+.headerlinks > a , .logout {
   margin-left: 2rem;
   margin-top: 2rem;
   text-decoration: none;
 }
 
+
+
 .activitycontainer {
   display: flex;
   justify-content: center;
   justify-content: space-around;
-  margin: 0 20rem;
+  margin: 0 10rem;
+  grid-row: 3;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
 }
 
 
@@ -106,4 +116,81 @@ code {
   color: white;
   border: none;
   font-size: 20px;
+}
+
+.bodywrapper {
+  display: grid;
+  grid-template-rows: 1fr 3fr 1fr;
+}
+
+.statscontainer {
+  grid-row: 1
+}
+
+
+
+.activitybuttons {
+  grid-row: 2;
+}
+
+.activitybutton {
+  margin-right: 3rem;
+}
+
+.activityheader, .statsheader {
+  grid-row: 1;
+  text-align: center;
+}
+
+.statscontainer {
+  grid-row: 1
+}
+
+.statsbar > li {
+  display: inline;
+  margin-right: 2rem;
+}
+
+.innerstatscontainer {
+  display: flex;  
+  justify-content: center; 
+  grid-template-rows: 1fr 1fr; 
+  display: grid;
+
+}
+
+.petscontainer {
+  margin: 0 2rem;
+}
+
+.petscontainer > table {
+
+
+  width: 100%;
+    border: 2px solid black;
+    border-spacing: 5px;
+}
+
+th, td {
+  border: 1px solid #999;
+    padding: 0.5rem;
+}
+
+
+.petbutton > button{
+  width: 60%;
+    height: 20px;
+    margin-left: 2rem;
+} 
+
+.bar {
+  
+    width: 35px;
+    height: 5px;
+    background-color: black;
+    margin: 6px 0;
+}
+
+.mobileheaderlinks {
+  display: none;
 }

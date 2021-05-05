@@ -55,14 +55,24 @@ const actionHandler = async (e) =>
     return (
         <div className="activitycontainer">
 
-            {notification}
+          <div>
+          {notification}
+          </div>
+
+          <div className="activityheader">
+            <h3> Activities </h3> 
+          </div>
 
 
+
+
+          <div className="activitybuttons"> 
             <button className="activitybutton" name='feed' onClick={actionHandler}> Feed</button> 
             <button className="activitybutton" name='pet' onClick={actionHandler}> Pet</button> 
             <button className="activitybutton" name='clean' onClick={actionHandler}>Clean </button> 
             <button className="activitybutton" name='heal' onClick={actionHandler}> Heal </button> 
             <button className="activitybutton" name='release' onClick={actionHandler}>Release </button> 
+          </div>
         </div> 
     )
 }

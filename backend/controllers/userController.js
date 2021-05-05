@@ -54,7 +54,8 @@ exports.signup_user_post = [
               
               res.status(200).json({
                 message: 'Congratulations, you created an account!',
-                token: 'Bearer ' + accessToken
+                token: 'Bearer ' + accessToken,
+                data
               })
             })
           })
@@ -99,13 +100,13 @@ exports.login_user_post = [
               const accessToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
               res.status(200).json({
                 success: true,
-                token: 'Bearer ' + accessToken
+                token: 'Bearer ' + accessToken,
+                data
               })
             } else {
-              return res.status(403).json({
-                success: false,
-                message: 'Passwords do not match.'
-              })
+              return res.json(
+                 'Passwords do not match.'
+              )
             }
           })
         }
