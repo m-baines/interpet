@@ -80,11 +80,11 @@ exports.sick = async () => {
         if ( pet.sick.status == false && ((Date.now() - pet.dirty.time) >= (5*60*1000) || pet.energy <= 0)) {
             pet.sick.status = true
             pet.sick.time = Date.now()
-        }
-        
-        Pet.findByIdAndUpdate(pet._id, {"sick.status": pet.sick.status, "sick.time": pet.sick.time}, {new: true}, (err, result) => {
-            if (err) {console.log(err)}
-        })
+
+            Pet.findByIdAndUpdate(pet._id, {"sick.status": pet.sick.status, "sick.time": pet.sick.time}, {new: true}, (err, result) => {
+                if (err) {console.log(err)}
+            })
+        }      
     })
 }
 
@@ -93,13 +93,13 @@ exports.dead = async () => {
     const allPets = await getAllPets()
     
     allPets.map((pet) => {
-        if ( pet.dead.status == false && (Date.now() - pet.sick.time) >= (5*60*1000) ) {
+        if ( pet.dead.status == false && ((Date.now() - pet.sick.time) >= (5*60*1000)) ) {
             pet.dead.status = true
             pet.dead.time = Date.now()
-        }
 
-        Pet.findByIdAndUpdate(pet._id, {"dead.status": pet.dead.status, "dead.time": pet.dead.time}, {new: true}, (err, result) => {
-            if (err) {console.log(err)}
-        })
+            Pet.findByIdAndUpdate(pet._id, {"dead.status": pet.dead.status, "dead.time": pet.dead.time}, {new: true}, (err, result) => {
+                if (err) {console.log(err)} 
+            })
+        }
     })
 }

@@ -45,35 +45,26 @@ const LoginForm = () => {
     }
 
     return (
-        <div class="">
-          <div class="">
-            
-          </div>
+
           <div  className="formcontainer"> 
   
             <form onSubmit={loginHandler}>
   
-              <div class="input ">
+              <div className="input ">
                 <input className='text-input' type="text" name="username" value={username} onChange={(e) => {setUsername(e.target.value)}} placeholder="Username..." />
               </div>
   
-              <div class="input">
-                <input className='text-input' type="text" name="password"  value={password} onChange={(e) => {setPassword(e.target.value)}} placeholder="Password..."/>
+              <div className="input">
+                <input className='text-input' type="password" name="password"  value={password} onChange={(e) => {setPassword(e.target.value)}} placeholder="Password..."/>
               </div>
   
               
-              <div class="input">
-              <button className="btn btn-block text-input" type="submit"> Login </button>
+              <div className="input">
+                <button className="btn btn-block text-input" type="submit"> Login </button>
               </div>
             </form>
           </div>
-
-    
-      </div>
-              
-      ) 
-
-
+      )
 }
 
 export default LoginForm;

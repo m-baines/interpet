@@ -26,6 +26,7 @@ exports.signup_user_post = [
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
+      console.log(errors)
       res.status(500).send(errors); //"data failed validation"
     } else {
 
@@ -147,14 +148,20 @@ exports.create_pet_post = [
 
       pet.save((err, result) => {
         if (err) res.status(500).json(err)
-        res.status(201).json({
-          message: "New pet created.",
-          result
-        })
+
+        else {
+          res.status(201).json({
+            message: "New pet created.",
+            result
+          })
+        }
+        
       })
     }
   }
 ]
+
+// GET all pets for a user
 
 exports.get_user_pets = (req, res) => {
   const userId = getUserId(req)
@@ -173,15 +180,14 @@ exports.get_user_pets = (req, res) => {
     res.status(400).json("User doesn't exist.") }
 }
 
-exports.get_specific_pet = (req,res) => {
-  Pet.findById(req.params.id, (err, pet) => {
+// GET specific pet
+
+exports.get_specific_pet = (req, res) => {
+  Pet.findById(req.params.id).exec( (err, pet) => {
     if (err) {
       res.status(500).json(err)
-    } else if (JSON.stringify(pet)=="[]") {
-      res.status(204).json("User has no pets.")
-    } else {
-      res.status(200).json(pet)
-    }
-
-  })
+    } 
+      res.json(pet)
+    
+  }) 
 }

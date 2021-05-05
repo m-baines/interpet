@@ -41,12 +41,12 @@ function App() {
           <Switch>
 
             <Route exact path="/">
-            <ActivityBar/> 
+              <ActivityBar/>
+              
             </Route>
 
             <Route exact path="/login">
               <LoginForm />
-              <ActivityBar/> 
             </Route>
 
             <Route exact path="/register">
@@ -61,12 +61,12 @@ function App() {
               <ViewAllPets/>
             </Route>  
 
+            {/*<Footer /> */}
           
 
             
           </Switch>
         </div>
-        {/*<Footer /> */}
       </div>
     </Router>
     

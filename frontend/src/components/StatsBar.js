@@ -7,6 +7,7 @@ const StatsBar = () => {
     let activePet = useSelector(state => state.pet)
 
     const [stats, setStats] = useState([])
+    console.log(stats)
 
     useEffect(() => {
         const getStats = async () => {

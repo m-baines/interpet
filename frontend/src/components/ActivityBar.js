@@ -20,17 +20,17 @@ const actionHandler = async (e) =>
             break;
 
         case 'pet':
-            let pet = await actionService.petPet(activePet.result.id)
+            let pet = await actionService.petPet(activePet.result._id)
             console.log(pet)
             break;
 
         case 'clean':
-            let clean = await actionService.cleanPet(activePet.result.id)
+            let clean = await actionService.cleanPet(activePet.result._id)
             console.log(clean)
             break;
                     
         case 'heal':
-            let heal = await actionService.healPet(activePet.result.id)
+            let heal = await actionService.healPet(activePet.result._id)
             console.log(heal)
             break;
             

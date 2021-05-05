@@ -8,11 +8,13 @@ import userService from '../services/users';
 const ViewAllPets = () => {
 
     const [allPets,setAllPets] = useState('')
+    console.log(allPets)
 
     useEffect(() => {
         const getPets = async () => {
 
-            const pets = await userService.viewAllPets
+            const pets = await userService.viewAllPets()
+            
             setAllPets(pets)
         }
         getPets()
@@ -27,7 +29,8 @@ const ViewAllPets = () => {
 
     return (
         <div>
-            {allPets[0]}
+            {allPets.length> 0? allPets[0].name : null}
+            
         </div>
     )
 

@@ -31,13 +31,13 @@ const viewAllPets = async() => {
     const config = {
         headers: {Authorization: token}
     }
-    const response = await axios.post(`${baseUrl}/user/pets`, config)
+    const response = await axios.get(`${baseUrl}/user/pets`, config)
     return response.data
 
 }
 
 const viewPet = async (id) => {
-    const response = await axios.get(`${baseUrl}/pets/${id}`)
+    const response = await axios.get(`${baseUrl}/user/pets/${id}`)
     return response.data
 }
 
