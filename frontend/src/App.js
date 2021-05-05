@@ -7,8 +7,10 @@ import CreatePet from './components/CreatePet'
 import Header from './components/Header'
 import StatsBar from './components/StatsBar'
 import ViewAllPets from './components/ViewAllPets'
-import PetService from './services/users'
+import userService from './services/users'
 import {setUser} from './reducers/loginReducer'
+import {setPet} from './reducers/petReducer'
+
 import './index.css'
 
 // Import react stuff
@@ -22,6 +24,8 @@ function App() {
   // use effects
   
   const dispatch = useDispatch()
+
+  // persist logged in user
   useEffect(() => {
     const loggedUser = window.localStorage.getItem('loggedUser')
     if (loggedUser) {
@@ -29,9 +33,25 @@ function App() {
       dispatch(setUser(user))
       const token = user.token.split(' ')
       
-          PetService.setToken(token[1])
+          userService.setToken(token[1])
     }
   }) 
+
+  useEffect(() => {
+    const loggedUser = window.localStorage.getItem('loggedUser')
+    if (loggedUser) {
+      userService.getOldestPet()
+       .then( response => { 
+         console.log('get oldest blog' + response )
+         dispatch(setPet(response))})
+       .catch( error => console.log(error))
+      
+    }
+
+  }, [])
+
+
+
   // functions e.g. onClick, onSearch
   return (
     <Router>
@@ -42,7 +62,7 @@ function App() {
 
             <Route exact path="/">
               <ActivityBar/>
-              
+              <StatsBar/>
             </Route>
 
             <Route exact path="/login">

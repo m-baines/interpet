@@ -150,10 +150,7 @@ exports.create_pet_post = [
         if (err) res.status(500).json(err)
 
         else {
-          res.status(201).json({
-            message: "New pet created.",
-            result
-          })
+          res.status(201).json(result)
         }
         
       })
@@ -186,8 +183,25 @@ exports.get_specific_pet = (req, res) => {
   Pet.findById(req.params.id).exec( (err, pet) => {
     if (err) {
       res.status(500).json(err)
-    } 
-      res.json(pet)
-    
-  }) 
+    } else if (JSON.stringify(pet)=="[]") {
+      res.status(204).json("This pet does not exist.")
+    } else {
+      res.status(200).json(pet)
+    }
+  })
+}
+
+// GET oldest alive pet
+exports.get_oldest_pet = (req, res) => {
+  const userId = getUserId(req)
+
+  if (userId) {
+    Pet.findOne({ userId, "dead.status": false }, (err, result) => {
+      if (err) { 
+        res.status(500).json(err)
+      } else {
+        res.status(200).json(result)
+      }
+    })
+  }
 }

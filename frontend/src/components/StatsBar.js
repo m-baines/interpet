@@ -1,41 +1,62 @@
 import React, { useState, useEffect } from 'react'
 import userService from '../services/users'
+import actionService from '../services/actions'
 import { useSelector } from 'react-redux'
 
 const StatsBar = () => {
 
     let activePet = useSelector(state => state.pet)
-
-    const [stats, setStats] = useState([])
-    console.log(stats)
+    let notification = useSelector(state => state.notify)
+    const [stats, setStats] = useState(null)
+    // const [mins, setMins] = useState(null)
+    console.log('this is stats' + stats)
 
     useEffect(() => {
-        const getStats = async () => {
+        
+        const interval = setInterval(() => {
+            if (activePet) {
+            userService.viewPet(activePet._id)
+             .then(response => setStats(response))
+             .catch(error => console.log(error)) }
+        }, 1000);
 
-            const statsfromDb = await userService.viewPet(activePet.result._id)
-            setStats(statsfromDb)
-        }
-        getStats()
     
-    }, [])
+        return () => clearInterval(interval)
+
+    }, [activePet, notification])
 
     function getPetAge(petBirth) {
+        
         // calculate age of pet
-        const eTime = Date.now() - petBirth // times in milliseconds at this point
+        const eTime = Date.now() - Number(petBirth) // times in milliseconds at this point
         const timeInMins = (eTime / 60000) // time in minutes
         const minutes = Math.floor(timeInMins)
         const seconds = Math.round((timeInMins - minutes) * 60)
         return [minutes, seconds]
+        
+    }
+    // setMins(getPageAge())
+
+    var mins = 0
+    var secs = 0
+
+    if (stats !== null) {
+        mins = getPetAge(new Date(stats.timeCreated).getTime())[0]
+        secs = getPetAge(new Date(stats.timeCreated).getTime())[1]
     }
 
-
     return (
+
+
         <div>
+            {stats !== null? <div>
             <li> Energy: {stats.energy} </li>
             <li> Happiness: {stats.happiness} </li>
-            <li> Dirty: {stats.dirty ? <p> yes </p> : <p> no </p>} </li>
-            <li> Sick: {stats.sick ? <p> yes </p> : <p> no </p>} </li>
-            <li> Age: {getPetAge(stats.timeCreated)[0]} mins {getPetAge(stats.timeCreated)[1]} secs </li>
+            <li> Dirty: {stats.dirty.status ? <p> yes </p> : <p> no </p>} </li>
+            <li> Sick: {stats.sick.status ? <p> yes </p> : <p> no </p>} </li>
+            <li> Age: {mins} mins {secs} secs </li> 
+            </div> :
+            null }
         </div>
     )
 }

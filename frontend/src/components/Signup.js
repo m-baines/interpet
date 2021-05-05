@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import signupService from '../services/users';
 import {useHistory} from 'react-router-dom'
 import {setUser} from '../reducers/loginReducer'
+import {setNotification} from '../reducers/notificationReducer'
 
 const SignupForm = () => {
 
@@ -40,7 +41,10 @@ const SignupForm = () => {
           
       }
       catch (exception) {
-          console.log('sign up failed')
+          dispatch(setNotification('invalid username or password'))
+          setTimeout(() => {
+            dispatch(setNotification(null))
+          }, 5000)
       }
 
   }

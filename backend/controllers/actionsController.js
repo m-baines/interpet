@@ -11,12 +11,12 @@ exports.feed_pet = (req, res) => {
             if (err) {
                 res.status(500).send(err)
             } else if (result) {
-                res.status(200).json({
-                    message: "Energy increased by 25. Happiness increased by 2.",
-                    result
-                })
+                res.status(200).json(
+                 "Energy increased by 25. Happiness increased by 2."
+                    
+                )
             } else {
-                res.status(403).json("Your pet is already stuffed!")
+                res.json("Your pet is already stuffed!")
             }
         }
     )
@@ -33,12 +33,11 @@ exports.pet_pet = (req, res) => {
             if (err) {
                 res.status(500).send(err)
             } else if (result) {
-                res.status(200).json({
-                    message: "Happiness increased by 5.",
-                    result
-                })
+                res.status(200).json(
+                     "Happiness increased by 5."
+                )
             } else {
-                res.status(403).json("You pet your pet, but you don't think it could get any happier!")
+                res.json("You pet your pet, but you don't think it could get any happier!")
             }
         }
     )
@@ -55,12 +54,12 @@ exports.pet_clean = (req, res) => {
             if (err) {
                 res.status(500).send(err)
             } else if (result) {
-                res.status(200).json({
-                    message: "Your pet has been cleaned.",
-                    result
-                })
+                res.status(200).json(
+                "Your pet has been cleaned."
+                   
+                )
             } else {
-                res.status(403).json("Your pet is already clean.")
+                res.json("Your pet is already clean.")
             }
         }
     ) 
@@ -77,12 +76,11 @@ exports.pet_heal = (req, res) => {
             if (err) {
                 res.status(500).send(err)
             } else if (result) {
-                res.status(200).json({
-                    message: "Your pet has been healed.",
-                    result
-                })
+                res.status(200).json(
+                    "Your pet has been healed."
+                )
             } else {
-                res.status(403).json("Your pet is already healthy.")
+                res.json("Your pet is already healthy.")
             }
         }
     )
@@ -98,7 +96,7 @@ exports.pet_release = (req, res) => {
             } else if (result) {
                 res.status(200).json(result["name"] + " has been released into the wild...")
             } else {
-                res.status(403).json("No pet to release.")
+                res.json("No pet to release.")
             }
         }
     )

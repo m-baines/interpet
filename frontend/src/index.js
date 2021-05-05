@@ -7,11 +7,13 @@ import {createStore, combineReducers, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import loginReducer from './reducers/loginReducer'
 import petReducer from './reducers/petReducer'
+import notificationReducer from './reducers/notificationReducer'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 const reducer = combineReducers({
   user: loginReducer,
-  pet: petReducer
+  pet: petReducer,
+  notify: notificationReducer
 
 })
 

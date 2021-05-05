@@ -41,4 +41,13 @@ const viewPet = async (id) => {
     return response.data
 }
 
-export default { createUser, loginUser, createPet, viewPet, viewAllPets, setToken }
+const getOldestPet = async() => {
+    const config = {
+        headers: {Authorization: token}
+    }
+    const response = await axios.get(`${baseUrl}/user/oldestpet`, config)
+    return response.data
+
+}
+
+export default { createUser, loginUser, createPet, viewPet, viewAllPets, setToken, getOldestPet }

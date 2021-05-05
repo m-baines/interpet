@@ -50,7 +50,7 @@ const LoginForm = () => {
   
             <form onSubmit={loginHandler}>
   
-              <div className="input ">
+              <div className="input">
                 <input className='text-input' type="text" name="username" value={username} onChange={(e) => {setUsername(e.target.value)}} placeholder="Username..." />
               </div>
   
