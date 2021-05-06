@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import userService from '../services/users'
-import actionService from '../services/actions'
 import { useSelector } from 'react-redux'
 
 const StatsBar = () => {
@@ -8,8 +7,6 @@ const StatsBar = () => {
     let activePet = useSelector(state => state.pet)
     let notification = useSelector(state => state.notify)
     const [stats, setStats] = useState(null)
-    // const [mins, setMins] = useState(null)
-    console.log('this is stats' + stats)
 
     useEffect(() => {
         

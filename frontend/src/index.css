@@ -1,7 +1,3 @@
-@font-face {
-  font-family: 'questrial-regular';
-  src: url('./layout/Questrial-FontZillion/Fonts/questrial-regular.ttf') format("truetype");
-}
 
 body {
   margin: 0;
@@ -36,6 +32,7 @@ code {
 
 .Headerwrapper {
   display: grid;
+  grid-row:1;
   grid-template-columns: 2fr 1fr;
   margin: 2rem;
 }
@@ -55,14 +52,16 @@ code {
   text-decoration: none;
 }
 
-
+.statscontainer {
+  grid-row: 4
+}
 
 .activitycontainer {
   display: flex;
   justify-content: center;
   justify-content: space-around;
   margin: 0 10rem;
-  grid-row: 1;
+  grid-row: 2;
   display: grid;
   grid-template-rows: 1fr 1fr;
 }
@@ -136,30 +135,21 @@ code {
 
 .bodywrapper {
   display: grid;
-  grid-template-rows: 1fr 3fr 1fr;
-}
-
-.statscontainer {
-  grid-row: 1
+  grid-template-rows: 0.5fr 0.8fr 1.5fr 0.8fr;
 }
 
 
-
-.activitybuttons {
-  grid-row: 2;
-}
 
 .activitybutton {
   margin-right: 3rem;
 }
 
 .activityheader, .statsheader {
-  grid-row: 1;
   text-align: center;
 }
 
 .statscontainer {
-  grid-row: 3
+  grid-row: 1
 }
 
 .statsbar > li {

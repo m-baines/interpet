@@ -8,6 +8,7 @@ import Header from './components/Header'
 import StatsBar from './components/StatsBar'
 import ViewAllPets from './components/ViewAllPets'
 import Landing from './components/Landing'
+import Animation from './components/Animation'
 
 // Import services
 import userService from './services/users'
@@ -37,12 +38,19 @@ function App() {
       const user = JSON.parse(loggedUser)
       dispatch(setUser(user))
       const token = user.token.split(' ')
+      userService.setToken(token[1])
+
+      userService.getOldestPet()
+       .then( response => { 
+         console.log('get oldest pet' + response )
+         dispatch(setPet(response))})
+       .catch( error => console.log(error))
       
-          userService.setToken(token[1])
+
     }
   }, []) 
 
-  useEffect(() => {
+ /* useEffect(() => {
     const loggedUser = window.localStorage.getItem('loggedUser')
     if (loggedUser) {
       userService.getOldestPet()
@@ -53,7 +61,7 @@ function App() {
       
     }
 
-  }, [])
+  }, [])*/ 
 
   return (
     <Router>
@@ -63,9 +71,10 @@ function App() {
           <Switch>
 
             <Route exact path="/">
-              <ActivityBar/>
-              <StatsBar/>
               <Landing/>
+              <ActivityBar/>
+              <Animation/>
+              <StatsBar/>
             </Route>
 
             <Route exact path="/login">

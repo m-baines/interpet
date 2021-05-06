@@ -43,23 +43,31 @@ const ActivityBar = () => {
             dispatch(setNotification(null))
           }, 5000)
             break;
+
+        case 'release':
+          let release = await actionService.releasePet(activePet._id)
+          dispatch(setNotification(release))
+        setTimeout(() => {
+          dispatch(setNotification(null))
+        }, 10000)
+          break;
             
         default:
-            console.log('invalid action')    
+            console.log('invalid action')
       }
   }
 
     return (
-      activePet ? 
+      activePet ?
         <div className="activitycontainer">
 
           <div>
           {notification}
           </div>
 
-          <div className="activityheader">
+          {/* <div className="activityheader">
             <h3> Activities </h3> 
-          </div>
+          </div> */}
 
 
 

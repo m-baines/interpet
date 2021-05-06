@@ -37,7 +37,7 @@ const ViewAllPets = () => {
                 </tr>
                 </thead>
 
-                {allPets.length> 0? allPets.map((pet) => <Pet x={pet}/>): null}
+                {allPets.length> 0? allPets.map((pet) => <Pet key={pet._id} x={pet}/>): null}
 
 
 
