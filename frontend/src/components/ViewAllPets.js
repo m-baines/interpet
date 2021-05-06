@@ -31,8 +31,8 @@ const ViewAllPets = () => {
                 <thead>
                 <tr>
                     <th> Name</th>
-                    <th> Dead</th>
                     <th> Time created</th>
+                    <th> Dead</th>
                     <th> Activate</th>
                 </tr>
                 </thead>

@@ -55,7 +55,7 @@ exports.signup_user_post = [
               res.status(200).json({
                 message: 'Congratulations, you created an account!',
                 token: 'Bearer ' + accessToken,
-                data
+                data: data.username
               })
             })
           })
@@ -87,21 +87,21 @@ exports.login_user_post = [
       res.status(500).send(errors); //"data failed validation"
     } else {
 
-      User.findOne({username: req.body.username}, (err, user) => {
+      User.findOne({username: req.body.username}, (err, data) => {
         if (err) return next (err)
-        if (!user) {
+        if (!data) {
           res.status(400).json("Incorrect username.")
         } else {
-          bcrypt.compare(req.body.password, user.password, (err, authenticated) => {
+          bcrypt.compare(req.body.password, data.password, (err, authenticated) => {
             if (err) {
               res.status(500).json(err)
             }
             if (authenticated) {
-              const accessToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
+              const accessToken = jwt.sign({ id: data._id }, process.env.JWT_SECRET)
               res.status(200).json({
                 success: true,
                 token: 'Bearer ' + accessToken,
-                data
+                data: data.username
               })
             } else {
               return res.json(

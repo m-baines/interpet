@@ -45,9 +45,10 @@ const Header = () => {
         <div>
 
           <div className="headerlinks">
+            <span className="greeting">Hi, {user.data}</span>
             <Link to='/viewPets'> View All Pets </Link>  
             <Link to='/createPet'> Create Pet </Link>
-            <span className="logout"> Hi, {user.username} <button onClick={logoutHandler}> Logout </button> </span>
+            <span className="logout"> <button onClick={logoutHandler}> Logout </button> </span>
           </div>
           <div className="mobileheaderlinks">
             <div class="bar"></div>

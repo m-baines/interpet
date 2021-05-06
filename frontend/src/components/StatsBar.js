@@ -30,15 +30,17 @@ const StatsBar = () => {
         // calculate age of pet
         const eTime = Date.now() - Number(petBirth) // times in milliseconds at this point
         const timeInMins = (eTime / 60000) // time in minutes
-        const minutes = Math.floor(timeInMins)
-        const seconds = Math.round((timeInMins - minutes) * 60)
-        return [minutes, seconds]
-        
+        let minutes = Math.floor(timeInMins)
+        let seconds = Math.round((timeInMins - minutes) * 60)
+        if (seconds === 60) {
+            return [(minutes += 1), (seconds - 60)]
+        }
+        return [minutes, seconds] 
     }
     // setMins(getPageAge())
 
-    var mins = 0
-    var secs = 0
+    let mins
+    let secs
 
     if (stats !== null) {
         mins = getPetAge(new Date(stats.timeCreated).getTime())[0]

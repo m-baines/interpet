@@ -3,17 +3,13 @@ import {useSelector, useDispatch } from 'react-redux'
 import {setNotification} from '../reducers/notificationReducer'
 import './ActivityBar.css'
 
-
-
-
 const ActivityBar = () => {
 
     let activePet = useSelector(state => state.pet)
     let notification = useSelector(state => state.notify)
     const dispatch = useDispatch()
 
-const actionHandler = async (e) =>
-  {
+  const actionHandler = async (e) => {
       //const response = await actionService.feedPet(activePet.id)
       switch (e.target.name) {
         case 'feed':
@@ -54,6 +50,7 @@ const actionHandler = async (e) =>
   }
 
     return (
+      activePet ? 
         <div className="activitycontainer">
 
           <div>
@@ -76,11 +73,12 @@ const actionHandler = async (e) =>
               <span class="hamburger hamburger-3"></span>
             </label> 
 
-            <button className="menu-item" name='feed' onClick={actionHandler}> Feed</button> 
+            <button className="menu-item" name='release' onClick={actionHandler}>Release </button>     
+            <button className="menu-item" name='clean' onClick={actionHandler}>Clean </button>
             <button className="menu-item" name='pet' onClick={actionHandler}> Pet</button> 
-            <button className="menu-item" name='clean' onClick={actionHandler}>Clean </button> 
-            <button className="menu-item" name='heal' onClick={actionHandler}> Heal </button> 
-            <button className="menu-item" name='release' onClick={actionHandler}>Release </button> 
+            <button className="menu-item" name='heal' onClick={actionHandler}> Heal </button>
+            <button className="menu-item" name='feed' onClick={actionHandler}> Feed</button> 
+             
           </div>
 
           {/* filters */}
@@ -103,7 +101,8 @@ const actionHandler = async (e) =>
                 </filter>
               </defs>
           </svg>
-        </div> 
+        </div> : 
+        null
     )
 }
 

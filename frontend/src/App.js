@@ -7,24 +7,29 @@ import CreatePet from './components/CreatePet'
 import Header from './components/Header'
 import StatsBar from './components/StatsBar'
 import ViewAllPets from './components/ViewAllPets'
+import Landing from './components/Landing'
+
+// Import services
 import userService from './services/users'
+
+// Import reducers
 import {setUser} from './reducers/loginReducer'
 import {setPet} from './reducers/petReducer'
 
 import './index.css'
 
-// Import react stuff
+// Import react and redux
 import { useState, useEffect } from 'react' 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 
 
 function App() {
   // use states
-  // use effects
-  
   const dispatch = useDispatch()
 
+  
+  // use effects
   // persist logged in user
   useEffect(() => {
     const loggedUser = window.localStorage.getItem('loggedUser')
@@ -50,9 +55,6 @@ function App() {
 
   }, [])
 
-
-
-  // functions e.g. onClick, onSearch
   return (
     <Router>
       <div className="flex flex-col h-screen">
@@ -63,6 +65,7 @@ function App() {
             <Route exact path="/">
               <ActivityBar/>
               <StatsBar/>
+              <Landing/>
             </Route>
 
             <Route exact path="/login">

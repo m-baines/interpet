@@ -21,9 +21,9 @@ const Pet = ({x}) => {
             <tbody>
             <tr>
                 <td> {x.name} </td>
-                <td>  {x.dead.status.toString()? 'R.I.P' : 'Alive'} </td>
                 <td> {x.timeCreated} </td>
-                <td className="petbutton"> <button onClick={selectPet}> Activate pet </button> </td>
+                <td> {x.dead.status? 'R.I.P' : 'Alive'} </td>
+                <td className="petbutton"> <button disabled={x.dead.status? true : false} onClick={selectPet} > Activate pet </button> </td>
 
             </tr>
             </tbody>
