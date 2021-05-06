@@ -3,6 +3,7 @@
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { setUser } from '../reducers/loginReducer.js';
+import { setPet } from '../reducers/petReducer.js';
 import logo from '../interpet.png';
 
 
@@ -19,6 +20,7 @@ const Header = () => {
         event.preventDefault()
         window.localStorage.removeItem('loggedUser')
         dispatch(setUser(null))
+        dispatch(setPet(null))
 
 
     }
