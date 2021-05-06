@@ -48,7 +48,10 @@ const LoginForm = () => {
 
         }
         catch (exception) {
-            console.log('login failed')
+          dispatch(setNotification('Password must be 8 characters.'))
+          setTimeout(()=> {
+            dispatch(setNotification(null))
+          },5000)
         }
   
     
@@ -61,8 +64,6 @@ const LoginForm = () => {
           <div>
             <h1> Login </h1>
           </div>
-
-          {notification}
 
           <div  className="formcontainer"> 
   
@@ -82,6 +83,11 @@ const LoginForm = () => {
               </div>
             </form>
           </div>
+
+          <div className="activity-notification">
+            <h3 className="activity-notification-text">{notification}</h3>
+          </div>
+
         </div>
       )
 }

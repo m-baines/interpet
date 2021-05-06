@@ -7,9 +7,22 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.animationGif {
-  display: flex;
+.landingAnimation {
+  text-align: center;
+}
+
+.animationBox {
+  display: inline-grid;
   justify-content: center;
+  grid-template-rows: 80%;
+  grid-row: 2;
+}
+
+.animationBox > .animation {
+  grid-row: 1;
+}
+
+.animationBox > .pet-name {
   grid-row: 2;
 }
 
@@ -118,7 +131,7 @@ code {
   /* box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08); */
   border-color: #f39a41;
   display: block;
-  width: 98%;
+  width: 96.5%;
   padding: 16px;
   font-size: 20px;
   border-radius: 10px;
@@ -175,7 +188,7 @@ code {
 
 .bodywrapper {
   display: grid;
-  grid-template-rows: 0.1fr 1fr 0.1fr;
+  grid-template-rows: 20% 55% ;
 }
 
 

@@ -26,7 +26,7 @@ const Modal = () => {
         dispatch(setNotification(release))
         setTimeout(() => {
           dispatch(setNotification(null))
-        }, 10000)
+        }, 30*1000)
     }
 
     return (

@@ -75,11 +75,11 @@ const ActivityBar = () => {
                 <span class="hamburger hamburger-3"></span>
               </label> 
 
-              <button className="menu-item" name='release' onClick={actionHandler}>Release </button>     
-              <button className="menu-item" name='clean' onClick={actionHandler}>Clean </button>
-              <button className="menu-item" name='pet' onClick={actionHandler}> Pet</button> 
+              <button className="menu-item" name='release' onClick={actionHandler}> Release </button>     
+              <button className="menu-item" name='clean' onClick={actionHandler}> Clean </button>
               <button className="menu-item" name='heal' onClick={actionHandler}> Heal </button>
-              <button className="menu-item" name='feed' onClick={actionHandler}> Feed</button> 
+              <button className="menu-item" name='feed' onClick={actionHandler}> Feed </button> 
+              <button className="menu-item" name='pet' onClick={actionHandler}> Pet </button> 
               
             </div>
 

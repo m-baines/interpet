@@ -30,6 +30,7 @@ function App() {
   // use states
   const dispatch = useDispatch()
   const user = useSelector(state=> state.user)
+  const pet = useSelector(state=> state.pet)
 
   
   // use effects
@@ -62,7 +63,7 @@ function App() {
     userService.viewAllPets()
     .then(pets => dispatch(setAllPets(pets)))
     .catch(error=> console.log(error))
-  })
+  },[pet])
 
   return (
     <Router>

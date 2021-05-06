@@ -27,7 +27,7 @@ exports.signup_user_post = [
 
     if (!errors.isEmpty()) {
       console.log(errors)
-      res.status(500).send(errors); //"data failed validation"
+      res.status(500).json(errors); //"data failed validation"
     } else {
 
       User.find({username: req.body.username}).exec((err, found) => {
@@ -84,7 +84,7 @@ exports.login_user_post = [
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      res.status(500).send(errors); //"data failed validation"
+      res.status(500).json(errors); //"data failed validation"
     } else {
 
       User.findOne({username: req.body.username}, (err, data) => {

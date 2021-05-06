@@ -1,6 +1,7 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import userService from '../services/users'
 import { useSelector } from 'react-redux'
+import { setStats} from '../reducers/statsReducer'
 
 import loveGif from '../layout/animations/love.gif'
 import deadGif from '../layout/animations/dead.gif'
@@ -14,7 +15,7 @@ const Animation = () => {
 
     let activePet = useSelector(state => state.pet)
     let notification = useSelector(state => state.notify)
-    const [stats, setStats] = useState(null)
+    let stats = useSelector(state => state.stats)
 
     useEffect(() => {
         
@@ -46,13 +47,15 @@ const Animation = () => {
                 return sadGif
             } else if (stats.happiness >= 0) {
                 return cryingGif
-            } 
+            }
         }
     }
+    
     return (
-        activePet ? 
-        <div className="animationGif">
-            <img src={gif()} alt="loading..."/>
+        stats ? 
+        <div className="animationBox">
+            <img className="animation" src={gif()} alt="loading..."/>
+            <h2 className="pet-name">{stats.name}</h2>
         </div> : null
     )
     

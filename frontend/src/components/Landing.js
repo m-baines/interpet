@@ -12,8 +12,8 @@ const Landing = () => {
         activePet ? null :
             <div>
                 <h1>Welcome to interpet</h1>
-                {loggedIn ? <h2>Start playing with your pet</h2> : <h2>Please register or login to get started</h2>}
-                <div className="animationGif">
+                {loggedIn ? <><h3>Create a pet to start playing...</h3><h3>If you already have a pet, view them all using the tab above</h3></> : <h2>Please register or login to get started</h2>}
+                <div className="landingAnimation">
                     <img src={huggingGif} alt="loading..."/>
                 </div>
             </div>
