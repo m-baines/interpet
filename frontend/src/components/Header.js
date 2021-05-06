@@ -1,4 +1,4 @@
-
+import { useState } from 'react'
 
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
@@ -21,6 +21,8 @@ const Header = () => {
     const dispatch = useDispatch()
     const history = useHistory()
 
+    const [toggled,setToggled] = useState(false)
+
     const logoutHandler = (event) => {
         event.preventDefault()
         window.localStorage.removeItem('loggedUser')
@@ -32,6 +34,9 @@ const Header = () => {
 
 
     }
+
+    // button syling 
+   
 
     return (
       <div className="Headerwrapper">
@@ -45,10 +50,16 @@ const Header = () => {
             <Link to="/register" className="hlinks"> Register </Link>
             <Link to="/login" className="hlinks"> Login </Link>
           </div> 
-          <div className="mobileheaderlinks">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
+          <div className={`mobileheaderlinks ${toggled? 'change' : 'nothing'}`}  onClick={()=> {setToggled(!toggled)}}>
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+          </div>
+
+          <div className="mobilemenu" style={toggled? {display : 'block'} : {display: 'none'}}> 
+            <Link to="/register" className=""> Register </Link>
+            <Link to="/login" className=""> Login </Link>
+          
           </div>
         </div> :
 
@@ -60,10 +71,17 @@ const Header = () => {
             <Link to='/createPet'className="hlinks"> Create Pet </Link>
             <button className="logout" onClick={logoutHandler}> Logout </button>
           </div>
-          <div className="mobileheaderlinks">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
+          <div className={`mobileheaderlinks ${toggled? 'change' : 'nothing'}`}  onClick={()=> {setToggled(!toggled)}}>
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+          </div>
+
+          <div className="mobilemenu" style={toggled? {display : 'block'} : {display: 'none'}}> 
+            <Link to='/viewPets' className="hlinks"> View All Pets </Link>  
+            <Link to='/createPet'className="hlinks"> Create Pet </Link>
+            <button className="logout" onClick={logoutHandler}> Logout </button>
+          
           </div>
         </div>
         }

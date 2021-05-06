@@ -7,6 +7,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+
+
 .landingAnimation {
   text-align: center;
 }
@@ -70,7 +72,12 @@ code {
   color: gray;
   transition-duration: 0.2s;
   align-items:center;
+  margin-left: 12rem;
 }
+
+
+
+
 .hlinks {
   color: gray;
 }
@@ -241,13 +248,6 @@ th, td {
     margin-left: 2rem;
 } 
 
-.bar {
-  
-    width: 35px;
-    height: 5px;
-    background-color: black;
-    margin: 6px 0;
-}
 
 .mobileheaderlinks {
   display: none;
@@ -319,4 +319,74 @@ th, td {
 .modal-btn:hover {
   transform: scale(1.2);
   cursor: pointer;
+}
+
+@media screen and (max-width: 700px) {
+.headerlinks {
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .headerlinks {
+      display: none;
+    }
+
+  .mobileheaderlinks {
+    display: block;
+    margin-left: 4rem;
+    margin-top: 1.5rem;
+    display: inline-block;
+  cursor: pointer;
+  }  
+  }
+
+  .mobilemenu > a {
+    text-decoration: none;
+    color: orange;
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+
+  }
+
+  .mobilemenu {
+    display: block;
+    text-decoration: none;
+    border: 1px solid;
+    padding: 1rem;
+    position: relative;
+    top: 1rem;
+    display: flex;
+    flex-direction: column;
+    right: 2rem;
+}
+
+.mobilecontainer {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.bar1, .bar2, .bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: #333;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+/* Rotate first bar */
+.change .bar1 {
+  -webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
+  transform: rotate(-45deg) translate(-9px, 6px) ;
+}
+
+/* Fade out the second bar */
+.change .bar2 {
+  opacity: 0;
+}
+
+/* Rotate last bar */
+.change .bar3 {
+  -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
+  transform: rotate(45deg) translate(-8px, -8px) ;
 }
