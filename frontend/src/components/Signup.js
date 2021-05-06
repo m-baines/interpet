@@ -4,6 +4,7 @@ import signupService from '../services/users';
 import {useHistory} from 'react-router-dom'
 import {setUser} from '../reducers/loginReducer'
 import {setNotification} from '../reducers/notificationReducer'
+import userService from '../services/users'
 
 const SignupForm = () => {
 
@@ -26,13 +27,12 @@ const SignupForm = () => {
 
       try {
           const user = await signupService.createUser(credentials)
-          console.log(user)
-
 
           window.localStorage.setItem(
               'loggedUser', JSON.stringify(user)
             
           )
+          userService.setToken(user.token) 
           dispatch(setUser(user))
             history.push('/')
           setUsername('')

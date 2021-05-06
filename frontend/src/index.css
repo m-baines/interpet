@@ -1,7 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 
 body {
   margin: 0;
-  font-family: 'questrial-regular';
+  font-family: 'Raleway', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -9,16 +10,22 @@ body {
 .animationGif {
   display: flex;
   justify-content: center;
+  grid-row: 2;
 }
 
 h1 {
   text-align: center;
-  color: orange;
+  color: #f39a41;
 }
 
 h2 {
   text-align: center;
-  color: orange;
+  color: #f39a41;
+}
+
+h3 {
+  text-align: center;
+  color: #f39a41;
 }
 
 code {
@@ -35,35 +42,70 @@ code {
   grid-row:1;
   grid-template-columns: 2fr 1fr;
   margin: 2rem;
+  font: bold;
+}
+
+.greeting {
+  color: #f39a41 ;
 }
 
 .headerlinks {
-  display: flex;
+  display: inline-flex;
   justify-content: center;
- 
-  font-size: 1rem;
-  font-family: monospace;
-  color: orange;
+  font-size: 1.2rem;
+  font-family: inherit;
+  color: gray;
+  transition-duration: 0.2s;
+  align-items:center;
+}
+.hlinks {
+  color: gray;
+}
+.hlinks:hover {
+  color: #f39a41;
+  transform: scale(1.1);
 }
 
-.headerlinks > a , .logout {
+ .headerlinks > a , .logout {
   margin-left: 2rem;
   margin-top: 2rem;
-  text-decoration: none;
+  text-decoration: none; 
+  text-align: center;
+} 
+
+.headerlinks > .logout{
+    background-color: #f39a41;
+    border:2px solid; 
+    border-color: #f39a41;
+    border-radius: 10px;
+    color: white;
+    padding: 5px 20px;
+    display: inline-flex;
+    font-size: 16px;
+    transition-duration: 0.2s;
+ }
+
+ .headerlinks > .logout:hover{
+  transform: scale(1.2);
+  cursor: pointer;
 }
 
 .statscontainer {
-  grid-row: 4
+  grid-row: 3
 }
 
+.activity-notification {
+  font: bolder;
+  color: #f39a41;
+  text-align:center;
+}
+
+
 .activitycontainer {
-  display: flex;
   justify-content: center;
   justify-content: space-around;
   margin: 0 10rem;
-  grid-row: 2;
-  display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-row: 1;
 }
 
 
@@ -74,14 +116,14 @@ code {
 .text-input:focus,
 .text-input:active {
   /* box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08); */
-  border-color: orange;
+  border-color: #f39a41;
   display: block;
   width: 98%;
   padding: 16px;
-  font-size: 16px;
+  font-size: 20px;
   border-radius: 10px;
   outline: none;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
 }
 
 .formcontainer {
@@ -91,12 +133,10 @@ code {
 }
 
 .btn {
-  display: inline-block;
-  background: orange;
+  display: block;
+  background: #f39a41;
   color: #fff;
   border: none;
- 
-  
   border-radius: 5px;
   cursor: pointer;
   text-decoration: none;
@@ -117,25 +157,25 @@ code {
   width: 100%;
 }
 
-.activitybutton {
+/* .activitybutton {
   display: inline-block;
   background: white; 
-  color: orange;
+  color: #f39a41;
   border: none;
   font-size: 20px;
 }
 
 .activitybutton:hover {
   display: inline-block;
-  background: orange; 
+  background: #f39a41; 
   color: white;
   border: none;
   font-size: 20px;
-}
+} */
 
 .bodywrapper {
   display: grid;
-  grid-template-rows: 0.5fr 0.8fr 1.5fr 0.8fr;
+  grid-template-rows: 0.1fr 1fr 0.1fr;
 }
 
 
@@ -148,13 +188,12 @@ code {
   text-align: center;
 }
 
-.statscontainer {
-  grid-row: 1
-}
+
 
 .statsbar > li {
   display: inline;
   margin-right: 2rem;
+  font-size: 1rem;
 }
 
 .innerstatscontainer {
@@ -204,4 +243,67 @@ th, td {
 .greeting {
   margin-left: 2rem;
   margin-top: 2rem;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width:100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-main {
+  position:fixed;
+  background: white;
+  width: 60%;
+  height: auto;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  border-radius: 12px;
+  align-content: center;
+}
+
+.modal-main >h2 >b {
+  color: red;
+}
+
+.modal-display-block {
+  display: flex;
+  
+}
+
+.modal-display-none {
+  display: none;
+}
+
+.modal-btn-container {
+  display: flex;
+  float: center;
+  width: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 15px;
+}
+
+.modal-btn {
+  background-color: #f39a41;
+  border:2px solid; 
+  border-color: #f39a41;
+  border-radius: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: white;
+  padding: 5px 20px;
+  display: inline-flex;
+  font-size: 16px;
+  transition-duration: 0.2s;
+  align-items: center;
+}
+
+.modal-btn:hover {
+  transform: scale(1.2);
+  cursor: pointer;
 }

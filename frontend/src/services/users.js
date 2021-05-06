@@ -2,7 +2,7 @@ import axios from 'axios'
 const baseUrl = 'http://localhost:8000/api/v1'
 
 
-let token = null
+let token = false
 
 const setToken = (newToken) => {
     token = `Bearer ${newToken}`
@@ -28,13 +28,15 @@ const createPet = async (data) => {
 }
 
 const viewAllPets = async() => {
+
+    if (token) {
     const config = {
         headers: {Authorization: token}
     }
     const response = await axios.get(`${baseUrl}/user/pets`, config)
     return response.data
 
-}
+} }
 
 const viewPet = async (id) => {
     const response = await axios.get(`${baseUrl}/user/pets/${id}`)
@@ -42,12 +44,14 @@ const viewPet = async (id) => {
 }
 
 const getOldestPet = async() => {
+
+    
     const config = {
         headers: {Authorization: token}
     }
     const response = await axios.get(`${baseUrl}/user/oldestpet`, config)
-    return response.data
+    return response.data }
 
-}
+
 
 export default { createUser, loginUser, createPet, viewPet, viewAllPets, setToken, getOldestPet }

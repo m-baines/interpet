@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import userService from '../services/users'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { setStats } from '../reducers/statsReducer'
 
 const StatsBar = () => {
 
     let activePet = useSelector(state => state.pet)
     let notification = useSelector(state => state.notify)
-    const [stats, setStats] = useState(null)
+    let stats = useSelector(state=> state.stats)
+    const dispatch = useDispatch()
+    
 
     useEffect(() => {
         
         const interval = setInterval(() => {
             if (activePet) {
             userService.viewPet(activePet._id)
-             .then(response => setStats(response))
+             .then(response => dispatch(setStats(response)))
              .catch(error => console.log(error)) }
         }, 1000);
 

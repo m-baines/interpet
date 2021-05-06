@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux'
-import PetService from '../services/users'
+import userService from '../services/users'
 import {useHistory} from 'react-router-dom'
 import {setPet} from '../reducers/petReducer'
 
@@ -23,16 +23,14 @@ const CreatePet = () => {
         const loggedUserToken = window.localStorage.getItem('loggedUser')
         if(loggedUserToken) {
           const user = JSON.parse(loggedUserToken)
-          const token = user.token.split(' ')
-          console.log(token)
-          PetService.setToken(token[1])
+          
+          userService.setToken(user.token)
         }
 
         
 
         try {
-            const pet = await PetService.createPet(credentials)
-            console.log(pet) 
+            const pet = await userService.createPet(credentials)
             dispatch(setPet(pet))
             setName('')
             history.push('/')
@@ -48,20 +46,21 @@ const CreatePet = () => {
     }
 
     return (
-        <div class="">
-          <div class="">
+        <div>
+          <div>
           <h2> Name your new pet </h2>
             
           </div>
-          <div className=""> 
+          <div className="formcontainer"> 
   
             <form onSubmit={loginHandler}>
   
               <div class="input ">
                 <input className='text-input' type="text" name="name" value={name} onChange={(e) => {setName(e.target.value)}} placeholder="Name..." />
               </div>
-    
-              <button className="btn btn-block" type="submit"> Go </button>
+              <div class="input ">
+              <button className="btn btn-block text-input" type="submit"> Go </button>
+              </div>
             </form>
           </div>
 

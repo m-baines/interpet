@@ -7,6 +7,7 @@
   
   .menu-item, .menu-open-button {
     background: #fbaf40;
+    font-size:18px;
     border-radius: 100%;
     width: 80px;
     height: 80px;
@@ -68,14 +69,16 @@
     width: 380px;
     height: 250px;
     box-sizing: border-box;
-    font-size: 20px;
+    font-size: 24px;
     text-align: left;
   }
   
   .menu-item:hover {
     cursor: pointer;
+    transform: scale(1.2);
   }
   .menu-item:nth-child(3) {
+    background: #e03c31;
     transition-duration: 70ms;
   }
   .menu-item:nth-child(4) {

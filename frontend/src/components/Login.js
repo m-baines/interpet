@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import loginService from '../services/users'
 import {useHistory} from 'react-router-dom'
 import {setUser} from '../reducers/loginReducer'
+import {setNotification} from '../reducers/notificationReducer'
+import userService from '../services/users'
 
 
 
@@ -12,6 +14,7 @@ const LoginForm = () => {
     const [password, setPassword] = useState('')
     const history = useHistory()
     const dispatch = useDispatch()
+    const notification = useSelector(state=> state.notify)
 
     const loginHandler = async (event) => {
         event.preventDefault()
@@ -23,16 +26,25 @@ const LoginForm = () => {
   
         try {
             const user = await loginService.loginUser(credentials)
-            console.log(user)
-  
-  
-            window.localStorage.setItem(
+
+            if(user.success) {
+              window.localStorage.setItem(
                 'loggedUser', JSON.stringify(user)
-            )
+                )
+            userService.setToken(user.token)    
             dispatch(setUser(user))
             setUsername('')
             setPassword('')
             history.push('/')
+
+            }
+            else {
+              dispatch(setNotification(user))
+              setTimeout(()=> {
+                dispatch(setNotification(null))
+
+              },5000)
+            }
 
         }
         catch (exception) {
@@ -49,6 +61,8 @@ const LoginForm = () => {
           <div>
             <h1> Login </h1>
           </div>
+
+          {notification}
 
           <div  className="formcontainer"> 
   

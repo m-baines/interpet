@@ -3,13 +3,9 @@ import userService from '../services/users'
 import { useSelector } from 'react-redux'
 
 import loveGif from '../layout/animations/love.gif'
-// import webGif from '../layout/animations/web.gif'
-// import tvGif from '../layout/animations/tv.gif' 
-import shockedGif from '../layout/animations/shocked.gif'
 import deadGif from '../layout/animations/dead.gif'
 import sadGif from '../layout/animations/sad.gif'
 import cryingGif from '../layout/animations/crying.gif'
-import happysadGif from '../layout/animations/happysad.gif'
 import happyGif from '../layout/animations/happy.gif'
 
 
@@ -38,6 +34,8 @@ const Animation = () => {
         if (stats !== null) {
             if (stats.sick.status) {
                 return deadGif
+            } else if (stats.energy <= 10) {
+                return cryingGif
             } else if (stats.dirty.status) {
                 return cryingGif
             } else if (stats.happiness >= 75) {

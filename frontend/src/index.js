@@ -8,12 +8,18 @@ import { Provider } from 'react-redux'
 import loginReducer from './reducers/loginReducer'
 import petReducer from './reducers/petReducer'
 import notificationReducer from './reducers/notificationReducer'
+import statsReducer from './reducers/statsReducer'
+import showModalReducer from './reducers/showModalReducer'
+import allPetsReducer from './reducers/allPetsReducer'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 const reducer = combineReducers({
   user: loginReducer,
   pet: petReducer,
-  notify: notificationReducer
+  notify: notificationReducer,
+  stats: statsReducer,
+  showModal: showModalReducer,
+  allPets: allPetsReducer
 
 })
 

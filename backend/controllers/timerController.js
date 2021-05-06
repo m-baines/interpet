@@ -24,10 +24,12 @@ exports.happinessAndEnergy = async () => {
         pet.happiness += 2 
     } else if (pet.energy >= 50) {
         pet.happiness += 1
-    } else if (pet.energy >= 0 && pet.energy <= 25) {
+    } else if (pet.energy >=25) {
         pet.happiness -= 1
-    } else if (pet.energy <= 0) {
+    } else if (pet.energy > 0) {
         pet.happiness -= 3
+    } else if (pet.energy <= 0) {
+        pet.happiness -= 5
     }
     // Dirty check
     if (pet.dirty.status) {
@@ -77,7 +79,7 @@ exports.sick = async () => {
     const allPets = await getAllPets()
     
     allPets.map((pet) => {
-        if ( pet.sick.status == false && pet.dirty.time !== null && ((Date.now() - pet.dirty.time) >= (5*60*1000) || pet.energy <= 0)) {
+        if ( pet.sick.status == false && ((pet.dirty.time !== null && (Date.now() - pet.dirty.time) >= (5*60*1000)) || pet.energy <= 0)) {
             pet.sick.status = true
             pet.sick.time = Date.now()
 

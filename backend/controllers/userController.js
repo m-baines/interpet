@@ -54,7 +54,7 @@ exports.signup_user_post = [
               
               res.status(200).json({
                 message: 'Congratulations, you created an account!',
-                token: 'Bearer ' + accessToken,
+                token: accessToken,
                 data: data.username
               })
             })
@@ -90,7 +90,7 @@ exports.login_user_post = [
       User.findOne({username: req.body.username}, (err, data) => {
         if (err) return next (err)
         if (!data) {
-          res.status(400).json("Incorrect username.")
+          res.json("Incorrect username.")
         } else {
           bcrypt.compare(req.body.password, data.password, (err, authenticated) => {
             if (err) {
@@ -100,7 +100,7 @@ exports.login_user_post = [
               const accessToken = jwt.sign({ id: data._id }, process.env.JWT_SECRET)
               res.status(200).json({
                 success: true,
-                token: 'Bearer ' + accessToken,
+                token: accessToken,
                 data: data.username
               })
             } else {

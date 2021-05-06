@@ -12,6 +12,5 @@ exports.getUserId = (req) => {
     }
     return false
   
-    
   };
   

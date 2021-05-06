@@ -1,6 +1,8 @@
 import {useState, useEffect } from 'react'
 import userService from '../services/users';
 import Pet from '../components/Pet';
+import { setAllPets } from '../reducers/allPetsReducer';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 
@@ -8,21 +10,8 @@ import Pet from '../components/Pet';
 
 const ViewAllPets = () => {
 
-    const [allPets,setAllPets] = useState('')
-    console.log(allPets)
 
-    useEffect(() => {
-        const getPets = async () => {
-
-            const pets = await userService.viewAllPets()
-            
-            setAllPets(pets)
-        }
-        getPets()
-    
-    }, [])
-    
-
+    const allPets = useSelector(state=> state.allPets)
 
 
     return (

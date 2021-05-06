@@ -1,8 +1,8 @@
 // Import components
 import SignupForm  from "./components/Signup.js"
 import LoginForm  from "./components/Login.js"
-// import { CreatePet } from "./components/CreatePet"
 import ActivityBar from './components/ActivityBar'
+import Modal from './components/Modal'
 import CreatePet from './components/CreatePet'
 import Header from './components/Header'
 import StatsBar from './components/StatsBar'
@@ -16,6 +16,7 @@ import userService from './services/users'
 // Import reducers
 import {setUser} from './reducers/loginReducer'
 import {setPet} from './reducers/petReducer'
+import { setAllPets } from './reducers/allPetsReducer';
 
 import './index.css'
 
@@ -28,6 +29,7 @@ import {useDispatch, useSelector} from 'react-redux'
 function App() {
   // use states
   const dispatch = useDispatch()
+  const user = useSelector(state=> state.user)
 
   
   // use effects
@@ -37,31 +39,30 @@ function App() {
     if (loggedUser) {
       const user = JSON.parse(loggedUser)
       dispatch(setUser(user))
-      const token = user.token.split(' ')
-      userService.setToken(token[1])
+      userService.setToken(user.token)
 
-      userService.getOldestPet()
-       .then( response => { 
-         console.log('get oldest pet' + response )
-         dispatch(setPet(response))})
-       .catch( error => console.log(error))
-      
 
     }
   }, []) 
 
- /* useEffect(() => {
-    const loggedUser = window.localStorage.getItem('loggedUser')
-    if (loggedUser) {
+ useEffect(() => {
+    
+    if (user) {
       userService.getOldestPet()
        .then( response => { 
-         console.log('get oldest blog' + response )
          dispatch(setPet(response))})
        .catch( error => console.log(error))
       
     }
 
-  }, [])*/ 
+  }, [user]) 
+
+  useEffect(()=> {
+    //set view all pets 
+    userService.viewAllPets()
+    .then(pets => dispatch(setAllPets(pets)))
+    .catch(error=> console.log(error))
+  })
 
   return (
     <Router>
@@ -73,6 +74,7 @@ function App() {
             <Route exact path="/">
               <Landing/>
               <ActivityBar/>
+              <Modal/>
               <Animation/>
               <StatsBar/>
             </Route>
