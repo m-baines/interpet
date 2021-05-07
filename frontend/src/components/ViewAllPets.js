@@ -21,6 +21,7 @@ const ViewAllPets = () => {
                 <tr>
                     <th> Name</th>
                     <th> Time created</th>
+                    <th> Lifespan</th>
                     <th> Dead</th>
                     <th> Activate</th>
                 </tr>

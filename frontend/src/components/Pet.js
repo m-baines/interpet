@@ -15,15 +15,18 @@ const Pet = ({x}) => {
     history.push('/')
 
 }
-    let date = new Date(x.timeCreated)
-    let dateString = date.toLocaleString("en-GB")
+    let birthDate = new Date(x.timeCreated)
+    let birthDateString = birthDate.toLocaleString("en-GB")
+
+    let deadDate = new Date(x.dead.time)
 
     return (
         
             <tbody>
             <tr>
                 <td> {x.name} </td>
-                <td> {dateString} </td>
+                <td> {birthDateString} </td>
+                <td> {x.dead.status? Math.round((deadDate-birthDate)/60000) : null}</td>
                 <td> {x.dead.status? 'R.I.P' : 'Alive'} </td>
                 <td className="petbutton"> <button disabled={x.dead.status? true : false} onClick={selectPet} > Activate pet </button> </td>
 
