@@ -57,7 +57,7 @@ function App() {
     userService.viewAllPets()
     .then(pets => dispatch(setAllPets(pets)))
     .catch(error=> console.log(error))
-  }, [pet])
+  }, [user, pet])
 
   return (
     <Router>
