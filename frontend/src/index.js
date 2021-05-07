@@ -1,18 +1,28 @@
+// Import react
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import {createStore, combineReducers, applyMiddleware } from 'redux'
+
+// Import redux
+import { createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
+import { composeWithDevTools } from 'redux-devtools-extension'
+
+// Import reducers
 import loginReducer from './reducers/loginReducer'
 import petReducer from './reducers/petReducer'
 import notificationReducer from './reducers/notificationReducer'
 import statsReducer from './reducers/statsReducer'
 import showModalReducer from './reducers/showModalReducer'
 import allPetsReducer from './reducers/allPetsReducer'
-import { composeWithDevTools } from 'redux-devtools-extension'
 
+// Import app and styling
+import './index.css';
+import App from './App';
+
+// Import report web vitals
+import reportWebVitals from './reportWebVitals';
+
+// Combine reducers
 const reducer = combineReducers({
   user: loginReducer,
   pet: petReducer,
@@ -20,17 +30,17 @@ const reducer = combineReducers({
   stats: statsReducer,
   showModal: showModalReducer,
   allPets: allPetsReducer
-
 })
 
+// Create redux store
 const store = createStore(reducer,
 composeWithDevTools())
 
-
+// Render App in React DOM and provide redux store
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-    <App />
+      <App />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

@@ -1,20 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import signupService from '../services/users';
-import {useHistory} from 'react-router-dom'
-import {setUser} from '../reducers/loginReducer'
-import {setNotification} from '../reducers/notificationReducer'
+import { useHistory } from 'react-router-dom'
+import { setUser } from '../reducers/loginReducer'
+import { setNotification } from '../reducers/notificationReducer'
 import userService from '../services/users'
 
 const SignupForm = () => {
 
-    const history = useHistory()
-    const dispatch = useDispatch()
+  const history = useHistory()
+  const dispatch = useDispatch()
 
-    const [username, setUsername] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-  
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const signupHandler = async (event) => {
       event.preventDefault()
@@ -30,7 +29,6 @@ const SignupForm = () => {
 
           window.localStorage.setItem(
               'loggedUser', JSON.stringify(user)
-            
           )
           userService.setToken(user.token) 
           dispatch(setUser(user))
@@ -38,7 +36,6 @@ const SignupForm = () => {
           setUsername('')
           setEmail('')
           setPassword('')
-          
       }
       catch (exception) {
           dispatch(setNotification('invalid username or password'))
@@ -46,16 +43,14 @@ const SignupForm = () => {
             dispatch(setNotification(null))
           }, 5000)
       }
-
   }
-     
-    
+
   return (
-      <div >
-        <div >
+      <div>
+        <div>
           <h1> Register </h1>
         </div>
-        <div className="formcontainer" > 
+        <div className="formcontainer"> 
 
           <form onSubmit={signupHandler}>
 
@@ -75,11 +70,8 @@ const SignupForm = () => {
             </div> 
           </form>
         </div>
-    </div>
-            
-  ) 
-    
-
+    </div>  
+  )
 }
 
 export default SignupForm

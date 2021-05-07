@@ -1,9 +1,7 @@
 const showModalReducer = (state = false, action) => {
 
-
     switch(action.type) {
       case 'SET_SHOW': {
-    
         return action.data
       }
 
@@ -11,8 +9,6 @@ const showModalReducer = (state = false, action) => {
       return state 
     }
 }
-
-
 
 export const setShowModal = (data) => {
     return {

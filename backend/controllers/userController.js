@@ -15,7 +15,7 @@ exports.signup_user_post = [
 
   body("email").isEmail(),
 
-  // password must be at least 8 chars long
+  // Password must be at least 8 chars long
   body("password").isLength({ min: 8 }).withMessage("Password must be at least 8 characters long."),
 
   //Sanitize fields.
@@ -73,7 +73,7 @@ exports.login_user_post = [
   // Validate fields.
   body("username", "Username must not be empty.").isLength({ min: 1 }).trim(),
 
-  // password must be at least 8 chars long
+  // Password must be at least 8 chars long
   body("password").isLength({ min: 8 }).withMessage("Password must be at least 8 characters long."),
 
   //Sanitize fields.
@@ -182,7 +182,7 @@ exports.get_user_pets = (req, res) => {
 // GET specific pet
 
 exports.get_specific_pet = (req, res) => {
-  Pet.findById(req.params.id).exec( (err, pet) => {
+  Pet.findById(req.params.id).exec((err, pet) => {
     if (err) {
       res.status(500).json(err)
     } else if (JSON.stringify(pet)=="[]") {

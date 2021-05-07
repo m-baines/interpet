@@ -1,19 +1,13 @@
 import { useState } from 'react'
+import { useHistory, Link } from 'react-router-dom'
 
-import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { setUser } from '../reducers/loginReducer.js';
 import { setPet } from '../reducers/petReducer.js';
 import { setStats } from '../reducers/statsReducer.js';
 import { setAllPets } from '../reducers/allPetsReducer';
-import {useHistory} from 'react-router-dom'
 
 import logo from '../interpet.png';
-
-
-
-
-
 
 const Header = () => {
 
@@ -31,12 +25,7 @@ const Header = () => {
         dispatch(setStats(null))
         dispatch(setAllPets([]))
         history.push('/')
-
-
     }
-
-    // button syling 
-   
 
     return (
       <div className="Headerwrapper">
@@ -57,8 +46,8 @@ const Header = () => {
           </div>
 
           <div className="mobilemenu" style={toggled? {display : 'flex'} : {display: 'none'}}> 
-            <Link to="/register" className=""> Register </Link>
-            <Link to="/login" className=""> Login </Link>
+            <Link onClick={()=> {setToggled(!toggled)}} to="/register" className=""> Register </Link>
+            <Link onClick={()=> {setToggled(!toggled)}} to="/login" className=""> Login </Link>
           
           </div>
         </div> :
@@ -78,8 +67,8 @@ const Header = () => {
           </div>
 
           <div className="mobilemenu" style={toggled? {display : 'flex'} : {display: 'none'}}> 
-            <Link to='/viewPets' className="hlinks"> View All Pets </Link>  
-            <Link to='/createPet'className="hlinks"> Create Pet </Link>
+            <Link onClick={()=> {setToggled(!toggled)}} to='/viewPets' className="hlinks"> View All Pets </Link>  
+            <Link onClick={()=> {setToggled(!toggled)}}bhybgonAborto='/createPet'className="hlinks"> Create Pet </Link>
             <button className="logout" onClick={logoutHandler}> Logout </button>
           
           </div>

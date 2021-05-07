@@ -10,12 +10,7 @@ const getAllPets = async (req, res) => {
 exports.happinessAndEnergy = async () => {
   const allPets = await getAllPets()
 
-  // Shows the status of the pets for testing
-    // console.log(allPets)
-
-
   allPets.map((pet) => {
-
     // Energy drain increment
     pet.energy -= 1
 
@@ -59,12 +54,12 @@ exports.poo = async () => {
     const allPets = await getAllPets()
 
     allPets.map((pet) => {
-        if (pet.dirty.status == false && pet.energy >=25 ) {
+        if (pet.dirty.status == false && pet.energy >= 25) {
             pet.dirty.status = true
             pet.dirty.time = Date.now()
             pet.energy -= 10
             
-        } else if ( pet.energy >=25 ) {
+        } else if (pet.energy >=25) {
             pet.energy -= 10
         }
 
@@ -79,7 +74,7 @@ exports.sick = async () => {
     const allPets = await getAllPets()
     
     allPets.map((pet) => {
-        if ( pet.sick.status == false && ((pet.dirty.time !== null && (Date.now() - pet.dirty.time) >= (5*60*1000)) || pet.energy <= 0)) {
+        if (pet.sick.status == false && ((pet.dirty.time !== null && (Date.now() - pet.dirty.time) >= (5*60*1000)) || pet.energy <= 0)) {
             pet.sick.status = true
             pet.sick.time = Date.now()
 
@@ -95,7 +90,7 @@ exports.dead = async () => {
     const allPets = await getAllPets()
     
     allPets.map((pet) => {
-        if ( pet.dead.status == false && pet.sick.time !== null && ((Date.now() - pet.sick.time) >= (5*60*1000)) ) {
+        if (pet.dead.status == false && pet.sick.time !== null && ((Date.now() - pet.sick.time) >= (5*60*1000))) {
             pet.dead.status = true
             pet.dead.time = Date.now()
 

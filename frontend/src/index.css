@@ -348,8 +348,8 @@ th, td {
     top: 8rem;
     display: flex;
     flex-direction: column;
-    right: 5rem;
-    width: 70%;
+    right: 1rem;
+    width: 90%;
 }
 
 
@@ -371,8 +371,8 @@ th, td {
 
 /* Rotate first bar */
 .change .bar1 {
-  -webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
-  transform: rotate(-45deg) translate(-9px, 6px) ;
+  -webkit-transform: rotate(-45deg) translate(-7px, 4px) ;
+  transform: rotate(-45deg) translate(-7px, 4px) ;
 }
 
 /* Fade out the second bar */
@@ -382,8 +382,8 @@ th, td {
 
 /* Rotate last bar */
 .change .bar3 {
-  -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
-  transform: rotate(45deg) translate(-8px, -8px) ;
+  -webkit-transform: rotate(45deg) translate(-8px, -6px) ;
+  transform: rotate(45deg) translate(-8px, -6px) ;
 }
 
 @media screen and (max-width: 375px) {
@@ -393,7 +393,7 @@ th, td {
 
   .mobileheaderlinks {
     display: block;
-    margin-left: 4rem;
+    margin-left: 2rem;
     margin-top: 1.5rem;
     display: inline-block;
   cursor: pointer;
@@ -407,5 +407,9 @@ th, td {
 
   #root > div > div.bodywrapper > div:nth-child(1) > h1, #root > div > div.bodywrapper > div:nth-child(1) > h2 {
     font-size: 1rem;
+  }
+
+  #root > div > div.bodywrapper > div:nth-child(1) > div > img {
+    width: 400px
   }
   }

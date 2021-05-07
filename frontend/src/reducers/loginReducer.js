@@ -1,9 +1,7 @@
-const loginReducer = (state =null,action) => {
-
+const loginReducer = (state = null, action) => {
 
     switch(action.type) {
       case 'SET_USER': {
-    
         return action.data
       }
 
@@ -11,8 +9,6 @@ const loginReducer = (state =null,action) => {
       return state 
     }
 }
-
-
 
 export const setUser = (data) => {
     return {

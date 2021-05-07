@@ -1,9 +1,7 @@
-const statsReducer = (state =null,action) => {
-
+const statsReducer = (state = null, action) => {
 
     switch(action.type) {
       case 'SET_STATS': {
-    
         return action.data
       }
 
@@ -11,8 +9,6 @@ const statsReducer = (state =null,action) => {
       return state 
     }
 }
-
-
 
 export const setStats = (data) => {
     return {

@@ -1,9 +1,7 @@
-const allPetsReducer = (state =[],action) => {
-
+const allPetsReducer = (state = [], action) => {
 
     switch(action.type) {
       case 'SET_ALL_PETS': {
-    
         return action.data
       }
 
@@ -11,8 +9,6 @@ const allPetsReducer = (state =[],action) => {
       return state 
     }
 }
-
-
 
 export const setAllPets = (data) => {
     return {

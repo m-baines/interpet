@@ -2,13 +2,13 @@ import actionService from '../services/actions'
 import {useSelector, useDispatch } from 'react-redux'
 import {setNotification} from '../reducers/notificationReducer'
 import {setShowModal} from '../reducers/showModalReducer'
-import './ActivityBar.css'
+import '../ActivityBar.css'
 
 const ActivityBar = () => {
 
-    let activePet = useSelector(state => state.pet)
-    let notification = useSelector(state => state.notify)
-    const dispatch = useDispatch()
+  let activePet = useSelector(state => state.pet)
+  let notification = useSelector(state => state.notify)
+  const dispatch = useDispatch()
 
   const actionHandler = async (e) => {
       //const response = await actionService.feedPet(activePet.id)
@@ -18,7 +18,7 @@ const ActivityBar = () => {
             dispatch(setNotification(feed))
           setTimeout(() => {
             dispatch(setNotification(null))
-          }, 5000)
+          }, 10000)
             break;
 
         case 'pet':
@@ -26,7 +26,7 @@ const ActivityBar = () => {
             dispatch(setNotification(pet))
           setTimeout(() => {
             dispatch(setNotification(null))
-          }, 5000)
+          }, 10000)
             break;
 
         case 'clean':
@@ -34,7 +34,7 @@ const ActivityBar = () => {
             dispatch(setNotification(clean))
           setTimeout(() => {
             dispatch(setNotification(null))
-          }, 5000)
+          }, 10000)
             break;
                     
         case 'heal':
@@ -42,7 +42,7 @@ const ActivityBar = () => {
             dispatch(setNotification(heal))
           setTimeout(() => {
             dispatch(setNotification(null))
-          }, 5000)
+          }, 10000)
             break;
 
         case 'release':

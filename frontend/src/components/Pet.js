@@ -1,7 +1,6 @@
-import {useDispatch} from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import {setPet} from '../reducers/petReducer'
-
+import { setPet } from '../reducers/petReducer'
 
 const Pet = ({x}) => {
 
@@ -13,15 +12,14 @@ const Pet = ({x}) => {
 
     dispatch(setPet(x))
     history.push('/')
+    }
 
-}
     let birthDate = new Date(x.timeCreated)
     let birthDateString = birthDate.toLocaleString("en-GB")
 
     let deadDate = new Date(x.dead.time)
 
     return (
-        
             <tbody>
             <tr>
                 <td> {x.name} </td>
@@ -32,9 +30,7 @@ const Pet = ({x}) => {
 
             </tr>
             </tbody>
-
     )
-
 }
 
 export default Pet

@@ -1,10 +1,10 @@
 import React from 'react'
 
-import {useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
-import {setShowModal} from '../reducers/showModalReducer'
-import {setNotification} from '../reducers/notificationReducer'
-import {setPet} from '../reducers/petReducer'
+import { setShowModal } from '../reducers/showModalReducer'
+import { setNotification } from '../reducers/notificationReducer'
+import { setPet } from '../reducers/petReducer'
 import { setStats } from '../reducers/statsReducer'
 
 import actionService from '../services/actions'

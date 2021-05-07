@@ -16,7 +16,7 @@ const PetSchema = new Schema(
         dead: { status: { type: Boolean, required: true },
                 time: { type:Date }
         },
-        userId: {type:Schema.Types.ObjectId, ref: "User", required: true}
+        userId: {type: Schema.Types.ObjectId, ref: "User", required: true}
     }
 )
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import userService from '../services/users'
 import { useSelector, useDispatch } from 'react-redux'
 import { setStats } from '../reducers/statsReducer'
@@ -7,26 +7,20 @@ const StatsBar = () => {
 
     let activePet = useSelector(state => state.pet)
     let notification = useSelector(state => state.notify)
-    let stats = useSelector(state=> state.stats)
+    let stats = useSelector(state => state.stats)
     const dispatch = useDispatch()
-    
 
     useEffect(() => {
-        
         const interval = setInterval(() => {
             if (activePet) {
             userService.viewPet(activePet._id)
              .then(response => dispatch(setStats(response)))
              .catch(error => console.log(error)) }
         }, 1000);
-
-    
         return () => clearInterval(interval)
-
     }, [activePet, notification])
 
     function getPetAge(petBirth) {
-        
         // calculate age of pet
         const eTime = Date.now() - Number(petBirth) // times in milliseconds at this point
         const timeInMins = (eTime / 60000) // time in minutes
@@ -37,7 +31,6 @@ const StatsBar = () => {
         }
         return [minutes, seconds] 
     }
-    // setMins(getPageAge())
 
     let mins
     let secs
@@ -48,8 +41,6 @@ const StatsBar = () => {
     }
 
     return (
-
-
         <div className="statscontainer">
             {stats !== null? 
             <div className="innerstatscontainer">
