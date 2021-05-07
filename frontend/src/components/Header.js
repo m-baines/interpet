@@ -56,7 +56,7 @@ const Header = () => {
             <div class="bar3"></div>
           </div>
 
-          <div className="mobilemenu" style={toggled? {display : 'block'} : {display: 'none'}}> 
+          <div className="mobilemenu" style={toggled? {display : 'flex'} : {display: 'none'}}> 
             <Link to="/register" className=""> Register </Link>
             <Link to="/login" className=""> Login </Link>
           
@@ -77,7 +77,7 @@ const Header = () => {
             <div class="bar3"></div>
           </div>
 
-          <div className="mobilemenu" style={toggled? {display : 'block'} : {display: 'none'}}> 
+          <div className="mobilemenu" style={toggled? {display : 'flex'} : {display: 'none'}}> 
             <Link to='/viewPets' className="hlinks"> View All Pets </Link>  
             <Link to='/createPet'className="hlinks"> Create Pet </Link>
             <button className="logout" onClick={logoutHandler}> Logout </button>

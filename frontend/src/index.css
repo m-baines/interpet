@@ -327,19 +327,7 @@ th, td {
   }
 }
 
-@media screen and (max-width: 375px) {
-  .headerlinks {
-      display: none;
-    }
 
-  .mobileheaderlinks {
-    display: block;
-    margin-left: 4rem;
-    margin-top: 1.5rem;
-    display: inline-block;
-  cursor: pointer;
-  }  
-  }
 
   .mobilemenu > a {
     text-decoration: none;
@@ -350,16 +338,23 @@ th, td {
   }
 
   .mobilemenu {
-    display: block;
     text-decoration: none;
     border: 1px solid;
     padding: 1rem;
-    position: relative;
-    top: 1rem;
+    
+    flex-direction: column;
+
+    position: fixed;
+    top: 8rem;
     display: flex;
     flex-direction: column;
-    right: 2rem;
+    right: 5rem;
+    width: 70%;
 }
+
+
+
+
 
 .mobilecontainer {
   display: inline-block;
@@ -368,7 +363,7 @@ th, td {
 
 .bar1, .bar2, .bar3 {
   width: 35px;
-  height: 5px;
+  height: 3px;
   background-color: #333;
   margin: 6px 0;
   transition: 0.4s;
@@ -390,3 +385,27 @@ th, td {
   -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
   transform: rotate(45deg) translate(-8px, -8px) ;
 }
+
+@media screen and (max-width: 375px) {
+  .headerlinks {
+      display: none;
+    }
+
+  .mobileheaderlinks {
+    display: block;
+    margin-left: 4rem;
+    margin-top: 1.5rem;
+    display: inline-block;
+  cursor: pointer;
+  }  
+
+
+  .logout {
+    margin-top: 0;
+    margin-left: 0;
+  }
+
+  #root > div > div.bodywrapper > div:nth-child(1) > h1, #root > div > div.bodywrapper > div:nth-child(1) > h2 {
+    font-size: 1rem;
+  }
+  }
